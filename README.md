@@ -14,7 +14,7 @@
    
   ➡️ Arquitetura de Computadores | EaD
    
-     ➡️ Ferramentas Back-End | NodeJS
+  ➡️ Ferramentas Back-End | NodeJS
    
 
   Nessas matérias trabalhamos respectivamente com as funcionalidades relacionadas ao **Banco de dados**, funcionalidades de **Created**, **Read**, **Update**, **Delete** ou **CRUD**.
