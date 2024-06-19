@@ -19,45 +19,50 @@
 </head>
 
 <body>
-    <header class="grid">
-        <div class="hamburguer">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">H</button>
+    <header>
 
-            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="grid-header">
+            <div class="hamburguer">
+                <button class="btn btn-hamburguer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                    </svg></button>
 
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Vacina Brasil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
+                <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
-                <div class="offcanvas-body">
-                    <nav class="navbar bg-body-tertiary">
-                        <div>
-                            <ul class="nav navbar-header">
-                                <li class="nav-item">
-                                    <a class="navbar-brand" id="home" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" id="informativos" href="#">Informativos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" id="vacinas" href="#">Vacinas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" id="agendamentos" href="#">Agendamento</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" id="consultarAgendamentos" href="#">Consultar Agendamento</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Vacina Brasil</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body">
+                        <nav class="navbar bg-body-tertiary">
+                            <div>
+                                <ul class="nav navbar-header">
+                                    <li class="nav-item">
+                                        <a class="navbar-brand" id="home" href="#">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navbar-brand" id="informativos" href="#">Informativos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navbar-brand" id="vacinas" href="#">Vacinas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navbar-brand" id="agendamentos" href="#">Agendamento</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="navbar-brand" id="consultarAgendamentos" href="#">Consultar Agendamento</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="titulo">
-            <h1>Vacina Brasil</h1>
+            <div id="titulo">
+                <h1>Vacina Brasil</h1>
+            </div>
         </div>
 
     </header>
