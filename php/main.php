@@ -2,6 +2,7 @@
 include "header.php"
 ?>
 
+<title>Vacina Brasil - Principal</title>
 <div id="carouselExampleCaptions" class="carousel slide carrosel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
