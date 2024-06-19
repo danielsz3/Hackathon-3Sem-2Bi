@@ -8,19 +8,16 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema dbVacinacao
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `dbVacinacao` DEFAULT CHARACTER SET utf8 ;
+USE `dbVacinacao` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`vacina`
+-- Table `dbVacinacao`.`vacina`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`vacina` (
+CREATE TABLE IF NOT EXISTS `dbVacinacao`.`vacina` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nomeVacina` VARCHAR(50) NOT NULL,
   `descricao` VARCHAR(100) NOT NULL,
@@ -30,9 +27,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`endereco`
+-- Table `dbVacinacao`.`endereco`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`endereco` (
+CREATE TABLE IF NOT EXISTS `dbVacinacao`.`endereco` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cep` VARCHAR(8) NOT NULL,
   `logradouro` VARCHAR(50) NOT NULL,
@@ -46,9 +43,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`paciente`
+-- Table `dbVacinacao`.`paciente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`paciente` (
+CREATE TABLE IF NOT EXISTS `dbVacinacao`.`paciente` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_endereco` INT NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
@@ -67,16 +64,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`paciente` (
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
   CONSTRAINT `fk_paciente_endereco1`
     FOREIGN KEY (`id_endereco`)
-    REFERENCES `mydb`.`endereco` (`id`)
+    REFERENCES `dbVacinacao`.`endereco` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`agenteSaude`
+-- Table `dbVacinacao`.`agenteSaude`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`agenteSaude` (
+CREATE TABLE IF NOT EXISTS `dbVacinacao`.`agenteSaude` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `cpf` VARCHAR(11) NOT NULL,
@@ -90,9 +87,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`agendamentoVisita`
+-- Table `dbVacinacao`.`agendamentoVisita`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`agendamentoVisita` (
+CREATE TABLE IF NOT EXISTS `dbVacinacao`.`agendamentoVisita` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dataVisita` DATETIME NOT NULL,
   `situacao` VARCHAR(20) NOT NULL,
@@ -103,33 +100,33 @@ CREATE TABLE IF NOT EXISTS `mydb`.`agendamentoVisita` (
   INDEX `fk_agendamentoVisita_paciente1_idx` (`id_paciente` ASC) VISIBLE,
   CONSTRAINT `fk_agendamentoVisita_agenteSaude1`
     FOREIGN KEY (`id_agenteSaude`)
-    REFERENCES `mydb`.`agenteSaude` (`id`)
+    REFERENCES `dbVacinacao`.`agenteSaude` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_agendamentoVisita_paciente1`
     FOREIGN KEY (`id_paciente`)
-    REFERENCES `mydb`.`paciente` (`id`)
+    REFERENCES `dbVacinacao`.`paciente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`prontuario`
+-- Table `dbVacinacao`.`prontuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`prontuario` (
+CREATE TABLE IF NOT EXISTS `dbVacinacao`.`prontuario` (
   `id_vacina` INT NOT NULL,
   `id_agendamentoVisita` INT NOT NULL,
   INDEX `fk_vacina_has_agendamentoVisita_agendamentoVisita1_idx` (`id_agendamentoVisita` ASC) VISIBLE,
   INDEX `fk_vacina_has_agendamentoVisita_vacina_idx` (`id_vacina` ASC) VISIBLE,
   CONSTRAINT `fk_vacina_has_agendamentoVisita_vacina`
     FOREIGN KEY (`id_vacina`)
-    REFERENCES `mydb`.`vacina` (`id`)
+    REFERENCES `dbVacinacao`.`vacina` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_vacina_has_agendamentoVisita_agendamentoVisita1`
     FOREIGN KEY (`id_agendamentoVisita`)
-    REFERENCES `mydb`.`agendamentoVisita` (`id`)
+    REFERENCES `dbVacinacao`.`agendamentoVisita` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
