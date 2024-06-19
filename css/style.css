@@ -1,0 +1,30 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+header {
+    width: 100%;
+    display: flex;
+    background-color:rgb(170, 170, 166);
+}
+
+.hamburguer{
+    margin: 10px;
+}
+
+#titulo h1{
+    margin-top: 3px;
+}
+
+.carrosel{
+    
+}
+
+.imagem-carrosel{
+    width: 1000px;
+}
+
+.info-carrosel{
+    color: black;
+}
