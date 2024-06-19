@@ -2,10 +2,21 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.carrosel{
+p {
+    text-align: justify;
+}
+
+h2,
+h3,
+h4 {
+    color: rgb(24, 77, 24);
+}
+
+.carrosel {
     width: 100%;
     height: 585px;
 }
+
 .hamburguer {
     margin: 10px;
 }
@@ -30,13 +41,40 @@ body {
     width: 100%;
 }
 
-.btn-hamburguer:hover{
+.btn-hamburguer:hover {
     background-color: rgb(115, 180, 109);
 }
 
-.carousel-control-prev:hover{
+.carousel-control-prev:hover {
     background-color: rgba(185, 185, 185, 0.144);
 }
-.carousel-control-next:hover{
+
+.carousel-control-next:hover {
     background-color: rgba(185, 185, 185, 0.144);
+}
+
+.conteudo {
+    margin-top: 50px;
+}
+
+.grid-cartao-sus {
+    grid-template-columns: 60% 40%;
+    display: grid;
+}
+
+.coluna-cartao-sus img {
+    width: 100%;
+}
+
+.grid-cards-vacinas {
+    grid-template-columns: 50% 50%;
+    display: grid;
+}
+
+.card-vacina {
+    margin-left: 4rem;
+}
+
+.btn-agendar a {
+    background-color: rgb(171, 221, 174);
 }
