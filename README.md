@@ -1,8 +1,8 @@
-# 🔵 Projeto HAKATOM UniAlfa 🔵
+# 🔵 Projeto Hackaton UniAlfa 🔵
 ## Hackathon 3º Semestre | 2º Bimestre Faculdade UniAlfa
 
 ## 🔵 Descrição
-  Nesse projeto sera feito o Hakatom que serve como forma de avaliação da faculdade UniAlfa, nesse Hakatom vamos ser avaliados dentro dos requisitos de todas as matérias que foram trabalhadas no decorrer do semestre, as matérias são:
+  Nesse projeto sera feito o Hackaton que serve como forma de avaliação da faculdade UniAlfa, nesse Hackaton vamos ser avaliados dentro dos requisitos de todas as matérias que foram trabalhadas no decorrer do semestre, as matérias são:
   
   ➡️ Experiência do Usuário | UX
    
