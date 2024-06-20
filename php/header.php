@@ -36,7 +36,7 @@
                                         <a class="navbar-brand" id="home" href="#">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="navbar-brand" id="informativos" href="#">Informativos</a>
+                                        <a class="navbar-brand" id="informativos" href="#informativo-titulo-h2">Informativos</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="navbar-brand" id="vacinas" href="#">Vacinas</a>
