@@ -6,8 +6,8 @@ public abstract class Pessoa {
     private String cpf;
     private String celular;
 
-    public Pessoa(int id, String nome, String cpf, String celular) {
-        this.id = id;
+    public Pessoa(String nome, String cpf, String celular) {
+        this.id = 0;
         this.nome = nome;
         this.cpf = cpf;
         this.celular = celular;

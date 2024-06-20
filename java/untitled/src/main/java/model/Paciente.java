@@ -3,16 +3,16 @@ package model;
 import java.time.LocalDate;
 
 public class Paciente extends Pessoa {
-    private int idEndereco;
+    private Endereco endereco;
     private LocalDate dataNascimento;
     private String cns;
     private String email;
     private String nomeCuidador;
     private String telefoneCuidador;
 
-    public Paciente(int id, String nome, String cpf, String celular, int idEndereco, String dataNascimento, String cns, String email, String nomeCuidador, String telefoneCuidador) {
+    public Paciente(int id, String nome, String cpf, String celular, Endereco endereco, String dataNascimento, String cns, String email, String nomeCuidador, String telefoneCuidador) {
         super(id, nome, cpf, celular);
-        this.idEndereco = idEndereco;
+        this.endereco = endereco;
         this.dataNascimento = LocalDate.parse(dataNascimento);
         this.cns = cns;
         this.email = email;

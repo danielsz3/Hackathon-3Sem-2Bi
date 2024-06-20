@@ -9,8 +9,8 @@ public class AgendamentoVisita {
     private AgenteSaude agenteSaude;
     private Paciente paciente;
 
-    public AgendamentoVisita(int id, Date dataVisita, String situacao, AgenteSaude agenteSaude, Paciente paciente) {
-        this.id = id;
+    public AgendamentoVisita( Date dataVisita, String situacao, AgenteSaude agenteSaude, Paciente paciente) {
+        this.id = 0;
         this.dataVisita = dataVisita;
         this.situacao = situacao;
         this.agenteSaude = agenteSaude;

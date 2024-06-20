@@ -1,5 +1,6 @@
 package dao;
 
+import model.Endereco;
 import model.Paciente;
 
 import java.sql.*;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PacienteDao {
+
     private Connection connection;
 
     public PacienteDao() throws SQLException {
@@ -26,11 +28,7 @@ public class PacienteDao {
     public void inserir(Paciente paciente) throws SQLException {
         String sql = "insert into paciente(nome,premiacao,nacionalidade,data_inicio_carreira) values(?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, diretor.getNome());
-        ps.setInt(2, diretor.getPremiacao());
-        ps.setString(3, diretor.getNacionalidade());
-        ps.setDate(4, Date.valueOf(diretor.getDataInicioCarreira()));
-        ps.execute();
+
     }
 
     public List<Diretor> listarTodos() throws SQLException {

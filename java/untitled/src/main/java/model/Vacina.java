@@ -5,8 +5,8 @@ public class Vacina {
     private String nomeVacina;
     private String descricao;
 
-    public Vacina(int id, String nomeVacina, String descricao) {
-        this.id = id;
+    public Vacina( String nomeVacina, String descricao) {
+        this.id = 0;
         this.nomeVacina = nomeVacina;
         this.descricao = descricao;
     }
