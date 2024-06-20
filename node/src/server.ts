@@ -40,7 +40,7 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 })
 
 
-const PORT = 8000
+const PORT = 8888
 
 app.listen(PORT, () => {
     console.log('Express iniciou na porta: ' +
