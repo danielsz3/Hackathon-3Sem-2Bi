@@ -1,14 +1,8 @@
 import Router, { Request, Response } from "express"
-import knex from "../database/knex"
+import knex from ".././database/knex"
 import AppError from "../utils/AppError";
 import { hash } from 'bcrypt'
 import { z } from "zod"
-
-
-//Importar o zod, comando no console é = npm i zod
-
-
-
 
 const router = Router();
 
