@@ -15,7 +15,7 @@ public class PacienteDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/javadb?useTimezone=true&serverTimezone=UTC", "root", "");
+                    "jdbc:mysql://localhost:3306/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "root");
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }
@@ -25,9 +25,20 @@ public class PacienteDao {
         return connection;
     }
 
-    public void inserir(Paciente paciente) throws SQLException {
-        String sql = "insert into paciente(nome,premiacao,nacionalidade,data_inicio_carreira) values(?,?,?,?)";
+    public void inserir(Paciente paciente,Endereco endereco) throws SQLException {
+        String sql = "insert into paciente(id_endereco,nome,dataNascimento,cpf,cns,celular,email,nomeCuidador,telefoneCuidador) values(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setLong(1, endereco.getId());
+        ps.setString(2, paciente.getNome());
+        ps.setDate(3, Date.valueOf(paciente.getDataNascimento()));
+        ps.setString(4, paciente.getCpf());
+        ps.setString(5, paciente.getCns());
+        ps.setString(6, paciente.getCelular());
+        ps.setString(7, paciente.getEmail());
+        ps.setString(8, paciente.getNomeCuidador());
+        ps.setString(9, paciente.getTelefoneCuidador());
+
+        ps.execute();
 
     }
 

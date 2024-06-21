@@ -1,9 +1,20 @@
 package views;
 
+import model.Endereco;
+import model.Paciente;
+import service.PacienteService;
+
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import static java.lang.Integer.parseInt;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class PacienteHub extends JFrame {
+    private PacienteService service;
     private JLabel labelId;
     private JTextField campoId;
     private JLabel labelNome;
@@ -32,13 +43,22 @@ public class PacienteHub extends JFrame {
     private JTextField campoComplemento;
     private JLabel labelBairro;
     private JTextField campoBairro;
+    private JLabel labelCidade;
+    private JTextField campoCidade;
     private JLabel labelEstado;
     private JTextField campoEstado;
 
     private JButton botaoSalvar;
     private JButton botaoCancelar;
 
+    private Date parseDate(String date) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        return new Date(format.parse(date).getTime());
+    }
+
     public PacienteHub() {
+        service = new PacienteService();
+
         JFrame frame = new JFrame("Paciente App");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
@@ -205,26 +225,36 @@ public class PacienteHub extends JFrame {
         constraints.gridy = 13;
         painelEntrada.add(campoBairro, constraints);
 
-        labelEstado = new JLabel("Estado:");
+        labelCidade = new JLabel("Cidade:");
         constraints.gridx = 0;
         constraints.gridy = 14;
+        painelEntrada.add(labelCidade, constraints);
+
+        campoCidade = new JTextField(20);
+        constraints.gridx = 1;
+        constraints.gridy = 14;
+        painelEntrada.add(campoCidade, constraints);
+
+        labelEstado = new JLabel("Estado:");
+        constraints.gridx = 0;
+        constraints.gridy = 15;
         painelEntrada.add(labelEstado, constraints);
 
         campoEstado = new JTextField(20);
         constraints.gridx = 1;
-        constraints.gridy = 14;
+        constraints.gridy = 15;
         painelEntrada.add(campoEstado, constraints);
 
         botaoCancelar = new JButton("Cancelar");
         //botaoCancelar.addActionListener(e -> limparCampos());
         constraints.gridx = 0;
-        constraints.gridy = 15;
+        constraints.gridy = 16;
         painelEntrada.add(botaoCancelar, constraints);
 
         botaoSalvar = new JButton("Salvar");
-        //botaoSalvar.addActionListener("");
+        botaoSalvar.addActionListener(e -> salvar());
         constraints.gridx = 1;
-        constraints.gridy = 15;
+        constraints.gridy = 16;
         painelEntrada.add(botaoSalvar, constraints);
 
         return painelEntrada;
@@ -241,8 +271,68 @@ public class PacienteHub extends JFrame {
     private void limparCampos() {
         campoNome.setText("");
         campoDataNascimento.setText("");
-        campoNacionalidade.setText("");
-        campoDataInicioCarreira.setText("");
+        campoCpf.setText("");
+        campoCns.setText("");
+        campoCelular.setText("");
+        campoEmail.setText("");
+        campoNomeCuidador.setText("");
+        campoTelefoneCuidador.setText("");
+        campoCep.setText("");
+        campoLogradouro.setText("");
+        campoNumero.setText("");
+        campoComplemento.setText("");
+        campoBairro.setText("");
+        campoEstado.setText("");
         campoId.setText("");
     }
+
+    private void salvar() {
+        try {
+            service.salvar(construirEndereco(),construirPaciente());
+        } catch (Exception e) {
+            showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private Paciente construirPaciente() {
+        try {
+            return campoId.getText().isEmpty()
+                    ? new Paciente(
+                    campoNome.getText(),
+                    campoCpf.getText(),
+                    campoCelular.getText(),
+                    parseDate(campoDataNascimento.getText()),
+                    campoCns.getText(),
+                    campoEmail.getText(),
+                    campoNomeCuidador.getText(),
+                    campoTelefoneCuidador.getText())
+                    : new Paciente(
+                    (long) parseInt(campoId.getText()),
+                    campoNome.getText(),
+                    campoCpf.getText(),
+                    campoCelular.getText(),
+                    parseDate(campoDataNascimento.getText()),
+                    campoCns.getText(),
+                    campoEmail.getText(),
+                    campoNomeCuidador.getText(),
+                    campoTelefoneCuidador.getText());
+        } catch (ParseException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+    }
+
+    private Endereco construirEndereco() {
+        return new Endereco(
+                campoCep.getText(),
+                campoLogradouro.getText(),
+                campoNumero.getText(),
+                campoComplemento.getText(),
+                campoBairro.getText(),
+                campoCidade.getText(),
+                campoEstado.getText());
+    }
 }
+
+
+
