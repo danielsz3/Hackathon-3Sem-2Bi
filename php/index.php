@@ -1,4 +1,5 @@
 <?php
+require 'config.php';
 if (isset($_GET['param'])) {
     $page = explode("/", $_GET['param']);
     $pasta = $page[0] ?? NULL;
