@@ -31,39 +31,6 @@ public class PacienteDao {
 
     }
 
-    public List<Diretor> listarTodos() throws SQLException {
-        List<Diretor> Diretores = new ArrayList<Diretor>();
 
-        ResultSet rs = connection.prepareStatement("select * from diretor").executeQuery();
-        while (rs.next()) {
-            Diretores.add(new Diretor(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getInt("premiacao"),
-                    rs.getString("nacionalidade"),
-                    rs.getDate("data_inicio_carreira")));
-        }
-        rs.close();
-
-        return Diretores;
-    }
-
-    public void atualizar(Diretor Diretor) throws SQLException {
-        String sql = "update Diretor set nome = ?, premiacao = ?,nacionalidade = ?,data_inicio_carreira = ? where id = ?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, Diretor.getNome());
-        ps.setInt(2, Diretor.getPremiacao());
-        ps.setString(3, Diretor.getNacionalidade());
-        ps.setDate(4, Date.valueOf(Diretor.getDataInicioCarreira()));
-        ps.setInt(5, Diretor.getId());
-        ps.execute();
-    }
-
-    public void deletar(int id) throws SQLException {
-        String sql = "delete from Diretor where id = ?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, id);
-        ps.execute();
-    }
 
 }
