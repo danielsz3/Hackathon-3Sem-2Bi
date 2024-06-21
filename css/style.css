@@ -28,21 +28,20 @@ body {
 .grid-header {
     grid-template-columns: 4% 96%;
     display: grid;
-    background-color: rgb(85, 148, 80);
+    /*background-color: rgb(135, 245, 128);*/
     width: 100%;
 }
 
-.btn-hamburguer:hover {
+
 .btn-hamburguer:hover {
     background-color: rgb(115, 180, 109);
 }
 
-.carousel-control-prev:hover {
+
 .carousel-control-prev:hover {
     background-color: rgba(185, 185, 185, 0.144);
 }
 
-.carousel-control-next:hover {
 
 .carousel-control-next:hover {
     background-color: rgba(185, 185, 185, 0.144);
@@ -52,9 +51,7 @@ body {
     text-align: center;
     margin: 10px 100px;
 }
-
-footer {
-    width: 100%;
-    background-color: rgb(85, 148, 80);
-    padding-bottom: 30px;
+.link-texto{
+    text-decoration: none;
+    color: #fff;
 }
