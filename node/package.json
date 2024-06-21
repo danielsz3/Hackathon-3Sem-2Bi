@@ -4,9 +4,9 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon",
-        "migrate": "knex migrate:latest --knexfile knexfile.js",
-        "migrate:make": "knex migrate:make create_db_vacinacao --knexfile knexfile.js",
-        "migrate:rollback": "knex migrate:rollback --knexfile knexfile.js",
+        "migrate": "knex migrate:latest",
+        "migrate:make": "knex migrate:make createEndereco",
+        "migrate:rollback": "knex migrate:rollback",
         "test": "jest --watch"
     },
     "keywords": [],
@@ -21,6 +21,7 @@
         "@types/jsonwebtoken": "^9.0.6",
         "@types/mime-types": "^2.1.4",
         "@types/multer": "^1.4.11",
+        "@types/mysql": "^2.15.26",
         "@types/node": "^20.14.6",
         "axios": "^1.7.2",
         "bcrypt": "^5.1.1",
