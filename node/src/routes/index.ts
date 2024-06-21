@@ -1,6 +1,6 @@
 import { Router } from "express"
 
-import usuario from './usuario'
+import usuario from './paciente'
 import session from './session'
 import agenteSaude from './agenteSaude'
 
