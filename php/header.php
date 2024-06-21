@@ -29,7 +29,7 @@
                             <div>
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" id="home" href="#">Home</a>
+                                        <a class="nav-link" id="home" href="../../php/paginas/main">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="informativos" href="#informativo-titulo-h2">Informativos</a>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="modal-body">
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="#">Home</a></li>
+                        <li class="list-group-item"><a href="../../php/paginas/main">Home</a></li>
                         <li class="list-group-item"><a href="#informativo-titulo-h2">Informativos</a></li>
                         <li class="list-group-item"><a href="#">Vacinas</a></li>
                         <li class="list-group-item"><a href="#">Agendamento</a></li>

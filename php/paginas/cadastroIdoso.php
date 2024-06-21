@@ -6,7 +6,7 @@ include "header.php";
     <div class="text-center mb-4">
         <h1>Cadastro</h1>
     </div>
-    <form>
+    <form action="../../php/paginas/cadastroEndereco">
         <div class="mb-3">
             <label for="nomeCompleto" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo" required>
@@ -29,7 +29,7 @@ include "header.php";
         </div>
         <div class="text-center">
             <button type="button" class="btn btn-secondary mr-2">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+           <a href="../../php/paginas/main"><button type="submit" class="btn btn-primary">Cadastrar</button></a> 
         </div>
     </form>
 </main>

@@ -6,7 +6,7 @@ include "header.php";
     <div class="text-center mb-4">
         <h1>Agendamento de Visita</h1>
     </div>
-    <form>
+    <form action="../../php/paginas/verAgendamento">
         <div class="mb-3">
             <label for="dataVisita" class="form-label">Data da Visita</label>
             <div class="input-group">
@@ -20,8 +20,9 @@ include "header.php";
             </div>
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-secondary mr-2">Voltar</button>
-            <button type="submit" class="btn btn-primary">Agendar</button>
+          <a href="../../php/paginas/cadastroEndereco"> <button type="button" class="btn btn-secondary mr-2">Voltar</button></a>
+           
+           <a href="../../php/paginas/verAgendamento"><button type="submit" class="btn btn-primary">Agendar</button></a> 
         </div>
     </form>
 </main>

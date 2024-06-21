@@ -55,3 +55,12 @@ body {
     text-decoration: none;
     color: #fff;
 }
+.fixed-footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #28a745; /* Cor de fundo verde */
+    text-align: center;
+    color: white; /* Texto branco */
+    padding: 10px 0; /* Espaçamento interno */
+}

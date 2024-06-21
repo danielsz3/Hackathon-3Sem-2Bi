@@ -6,7 +6,7 @@ include "header.php";
     <div class="text-center mb-4">
         <h1>Endereço</h1>
     </div>
-    <form>
+    <form action="../../php/paginas/agendamentoVisita">
         <div class="mb-3">
             <label for="cep" class="form-label">CEP</label>
             <div class="input-group">
@@ -41,8 +41,8 @@ include "header.php";
             <input type="text" class="form-control" id="uf" name="uf" placeholder="Digite a UF" required>
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-secondary mr-2">Voltar</button>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+           <a href="../../php/paginas/cadastroIdoso"><button type="button" class="btn btn-secondary mr-2">Voltar</button></a>
+           <a href="../../php/paginas/agendamentoVisita"><button type="submit" class="btn btn-primary">Cadastrar</button></a>
         </div>
     </form>
 </main>
