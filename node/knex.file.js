@@ -4,15 +4,16 @@ module.exports = {
     development: {
         client: 'mysql',
         connection: {
-            host: '127.0.0.1',
-            port: 3333,
+            host: 'localhost',
+            port: 8000,
             user: 'root',
-            password: 'root',
+            password: '',
             database: 'dbVacinacao',
         },
         pool: {
             afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb)
         },
+        
 
         migrations: {
             directory: path.resolve(
