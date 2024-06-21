@@ -1,10 +1,10 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
     development: {
         client: 'mysql',
         connection: {
-            host: '127.0.0.1',
+            host: 'localhost',
             port: 3333,
             user: 'root',
             password: 'root',
@@ -24,4 +24,4 @@ module.exports = {
         },
         useNullAsDefault: true
     }
-};
+}
