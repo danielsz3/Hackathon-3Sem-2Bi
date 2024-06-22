@@ -27,19 +27,24 @@ router.post("/", async (req: Request, res: Response) => {
     })
     const objSalvar = registerBodySchema.parse(req.body)
 
-    async function obterUltimoIdEndereco(): Promise<number | undefined> {
+    async function obterUltimoIdEndereco(): Promise<number> {
         const id_ultimo_endereco = await knex('endereco')
             .select<number[]>('id')
             .orderBy('id', 'desc')
             .first()
 
-        console.log('Maior ID da tabela "endereço":', id_ultimo_endereco)
-        return id_ultimo_endereco
+
+
+        const ultimoId = Number(id_ultimo_endereco)
+        const id_endereco = ultimoId.toString().replace(/[^0-9]/g, '');
+        console.log('Maior ID da tabela "endereço":', ultimoId, id_ultimo_endereco)
+        return parseInt(id_endereco);
     }
-    /*
+    
         (async () => {
             try {
                 const ultimoId = await obterUltimoIdEndereco();
+                console.log('Maior ID da tabela "endereço":', ultimoId)
                 if (ultimoId !== undefined) {
                     objSalvar.id_endereco = ultimoId;
                     console.log("ID inserido:", ultimoId);
@@ -50,18 +55,7 @@ router.post("/", async (req: Request, res: Response) => {
                 console.error("Erro ao obter o último ID de endereço:", AppError);
             }
         })();
-    */
-
-
-    const ultimoId = await obterUltimoIdEndereco();
-    if (ultimoId !== undefined) {
-        objSalvar.id_endereco = ultimoId;
-        console.log("ID inserido:", ultimoId);
-    } else {
-        throw new AppError("Não foi possível obter o último ID de endereço.", 404);
-    }
-
-
+    
 
 
     if (!objSalvar?.id_endereco) {
