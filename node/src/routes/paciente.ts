@@ -1,16 +1,22 @@
 import Router, { Request, Response } from "express"
 import knex from "../knex"
 import AppError from "../utils/AppError";
-import { hash } from 'bcrypt'
 import { z } from "zod"
-import { get } from "http";
 
 
 const router = Router();
 
-
-
-// Promise - async
+const registerBodySchema = z.object({
+    id_endereco: z.number(),
+    nome: z.string({ message: "Nome obrigatório" }).max(100).min(8),
+    dataNascimento: z.string().max(10),
+    cpf: z.string({ message: "CPF obrigatório" }).max(11),
+    cns: z.string({ message: "CNS obrigatório" }).max(15),
+    celular: z.string({ message: "Celular obrigatório" }).max(11),
+    email: z.string({ message: "Email obrigatório" }).max(50),
+    nomeCuidador: z.string({ message: "Nome do cuidador obrigatório" }).max(100).min(6),
+    telefoneCuidador: z.string({ message: "Telefone do cuidador obrigatório" }).max(11)
+});
 
 router.post("/", async (req: Request, res: Response) => {
 
