@@ -2,11 +2,7 @@ import express, { Request, Response, NextFunction } from 'express'
 import "express-async-errors"
 
 import AppError from './utils/AppError'
-
 import routes from './routes'
-import { restart } from 'pm2'
-import { STATUS_CODES } from 'http'
-import { stat } from 'fs'
 import { ZodError } from 'zod'
 
 const app = express()
@@ -41,8 +37,8 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     console.log(error)
 
     return res.status(500).json({
-        status: "erro",
-        message: "Lasco"
+        status: "Erro",
+        message: "Erro interno"
     })
 })
 
