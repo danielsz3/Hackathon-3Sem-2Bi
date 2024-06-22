@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "nodemon",
         "migrate": "knex migrate:latest",
-        "migrate:make": "knex migrate:make createAgendamentoVisita",
+        "migrate:make": "knex migrate:make create_dbVacinacao",
         "migrate:rollback": "knex migrate:rollback",
         "test": "jest --watch"
     },
