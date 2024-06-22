@@ -6,6 +6,7 @@ import model.Endereco;
 import model.Paciente;
 
 public class PacienteService {
+
     public void salvar(Paciente paciente) {
         try {
             var daoEndereco = new EnderecoDao();

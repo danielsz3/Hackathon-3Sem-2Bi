@@ -15,7 +15,7 @@ public class MenuHub extends JFrame {
         JPanel painelEntrada = montarPainel();
         setLocationRelativeTo(null);
         getContentPane().add(painelEntrada, BorderLayout.CENTER);
-        return;
+        setVisible(true);
     }
 
     private JPanel montarPainel() {
@@ -24,8 +24,9 @@ public class MenuHub extends JFrame {
         constraints.insets = new Insets(5, 5, 5, 5);
 
         botaoAgenda = new JButton("Agenda");
+        JButton botaoAgenda = new JButton("Agenda");
         botaoAgenda.addActionListener(e -> SwingUtilities.invokeLater(() -> {
-            var form = new AgendaHub();
+            AgendaHub form = new AgendaHub();
             form.setVisible(true);
         }));
         constraints.gridx = 0;
@@ -33,8 +34,9 @@ public class MenuHub extends JFrame {
         painelEntrada.add(botaoAgenda, constraints);
 
         botaoPaciente = new JButton("Paciente");
+        JButton botaoPaciente = new JButton("Paciente");
         botaoPaciente.addActionListener(e -> SwingUtilities.invokeLater(() -> {
-            var form = new PacienteHub();
+            PacienteHub form = new PacienteHub();
             form.setVisible(true);
         }));
         constraints.gridx = 0;
