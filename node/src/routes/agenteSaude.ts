@@ -39,22 +39,30 @@ router.put("/:id", async (req: Request, res: Response) => {
     const objSalvar = req.body
     const { id } = req.params
 
-    if (objSalvar?.senha) {
-        objSalvar.senha = await hash(objSalvar.senha, 8)
+    if (!id) {
+        throw new AppError('ID do agente de saúde é obrigatório!')
+    }
+
+    const camposPermitidos = ['nome', 'celular', 'senha']
+    const camposAtualizar: any = {}
+
+    for (const key of camposPermitidos) {
+        if (objSalvar[key] !== undefined) {
+            camposAtualizar[key] = objSalvar[key]
+        }
+    }
+
+    if (camposAtualizar.senha) {
+        camposAtualizar.senha = await hash(camposAtualizar.senha, 8)
     }
 
     let agente = await knex('agenteSaude').where({ id }).first()
 
-    if (!agente?.id) {
+    if (!agente) {
         throw new AppError('Agente de Saúde não encontrado!')
     }
 
-    let newAgente = {
-        ...agente,
-        ...objSalvar
-    }
-
-    await knex('agenteSaude').update(newAgente).where({ id: agente.id })
+    await knex('agenteSaude').where({ id }).update(camposAtualizar)
 
     return res.json({
         message: `Agente de Saúde atualizado com sucesso`

@@ -17,13 +17,21 @@ router.post("/", async (req: Request, res: Response) => {
 
     const id_agendamentovisita = await knex('agendamentovisita').insert(objSalvar)
 
-    const agendamento = await knex('agendamentovisita').where({ id: id_agendamentovisita[0] })
+    const agendamento = await knex('agendamentovisita').where({ id: id_agendamentovisita[0] }).first()
 
     res.json({ message: "Agendamento de Visita Salvo", agendamento })
 })
 
 router.get("/", async (req: Request, res: Response) => {
     const agendamentos = await knex('agendamentovisita')
+        .select(
+            'agendamentovisita.*',
+            'agenteSaude.nome as agenteNome',
+            'agenteSaude.cpf as agenteCpf',
+            'agenteSaude.celular as agenteCelular'
+        )
+        .leftJoin('agenteSaude', 'agendamentovisita.id_agenteSaude', 'agenteSaude.id')
+
     res.json({ agendamentos })
 })
 
