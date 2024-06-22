@@ -1,3 +1,4 @@
+import views.MenuHub;
 import views.PacienteHub;
 
 import javax.swing.*;
@@ -5,7 +6,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new PacienteHub();
+            new MenuHub();
         });
     }
 }

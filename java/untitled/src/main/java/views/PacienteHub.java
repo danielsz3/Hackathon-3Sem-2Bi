@@ -1,16 +1,15 @@
 package views;
 
-import model.Endereco;
 import model.Paciente;
 import service.PacienteService;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.sql.Date;
 
-import static java.lang.Integer.parseInt;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class PacienteHub extends JFrame {
@@ -59,26 +58,23 @@ public class PacienteHub extends JFrame {
     public PacienteHub() {
         service = new PacienteService();
 
-        JFrame frame = new JFrame("Paciente App");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        setTitle("Paciente App");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(800, 600);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
         JPanel listPanel = getPaciente(tabbedPane);
-
         JPanel cadastroPanel = setPaciente();
 
         tabbedPane.addTab("Lista de Pacientes", listPanel);
         tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
 
-        frame.add(tabbedPane, BorderLayout.CENTER);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        add(tabbedPane, BorderLayout.CENTER);
+        setLocationRelativeTo(null);
     }
 
     private JPanel setPaciente() {
-        // Painel de Cadastro de Pacientes
         JPanel painelEntrada = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(5, 5, 5, 5);
@@ -260,11 +256,24 @@ public class PacienteHub extends JFrame {
         return painelEntrada;
     }
 
-    private static JPanel getPaciente(JTabbedPane tabbedPane) {
-        // Panel da Lista de Pacientes
+    private JPanel getPaciente(JTabbedPane tabbedPane) {
         JPanel listPanel = new JPanel(new BorderLayout());
-        JScrollPane scrollPane = new JScrollPane();
+
+        JPanel searchPanel = new JPanel();
+        JLabel searchLabel = new JLabel("Buscar por CPF:");
+        JTextField searchField = new JTextField(15);
+        JButton searchButton = new JButton("Buscar");
+
+        searchPanel.add(searchLabel);
+        searchPanel.add(searchField);
+        searchPanel.add(searchButton);
+
+        JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "Nome", "CPF"}, 0));
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        listPanel.add(searchPanel, BorderLayout.NORTH);
         listPanel.add(scrollPane, BorderLayout.CENTER);
+
         return listPanel;
     }
 
@@ -308,21 +317,17 @@ public class PacienteHub extends JFrame {
                     campoNomeCuidador.getText(),
                     campoTelefoneCuidador.getText())
                     : new Paciente(
-                    (long) parseInt(campoId.getText()),
+                    Long.parseLong(campoId.getText()),
                     campoNome.getText(),
-                    campoCpf.getText(),
-                    campoCelular.getText(),
                     parseDate(campoDataNascimento.getText()),
+                    campoCpf.getText(),
                     campoCns.getText(),
+                    campoCelular.getText(),
                     campoEmail.getText(),
                     campoNomeCuidador.getText(),
                     campoTelefoneCuidador.getText());
         } catch (ParseException e) {
             throw new RuntimeException(e.getMessage());
         }
-
     }
 }
-
-
-
