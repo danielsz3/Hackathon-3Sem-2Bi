@@ -6,7 +6,7 @@ import endereco from './endereco'
 
 const routes = Router()
 
-routes.use('/usuarios', paciente)
+routes.use('/paciente', paciente)
 routes.use('/agenteSaude', agenteSaude)
 routes.use('/endereco', endereco)
 
