@@ -1,6 +1,4 @@
-<?php
-include "header.php";
-?>
+
 <title>Vacina Brasil - Ver Agendamentos</title>
 <main class="container my-4">
     <div class="text-center mb-4">
@@ -99,9 +97,6 @@ include "header.php";
     
 </div>
 
-<?php
-include "footer.php";
-?>
 
 <!-- Bootstrap JavaScript e dependências -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

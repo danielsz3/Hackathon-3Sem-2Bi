@@ -40,22 +40,22 @@ router.post("/", async (req: Request, res: Response) => {
         console.log('Maior ID da tabela "endereço":', ultimoId, id_ultimo_endereco)
         return parseInt(id_endereco);
     }
-    
-        (async () => {
-            try {
-                const ultimoId = await obterUltimoIdEndereco();
-                console.log('Maior ID da tabela "endereço":', ultimoId)
-                if (ultimoId !== undefined) {
-                    objSalvar.id_endereco = ultimoId;
-                    console.log("ID inserido:", ultimoId);
-                } else {
-                    throw new AppError("Não foi possível obter o último ID de endereço.", 404);
-                }
-            } catch (error) {
-                console.error("Erro ao obter o último ID de endereço:", AppError);
+
+    (async () => {
+        try {
+            const ultimoId = await obterUltimoIdEndereco();
+            console.log('Maior ID da tabela "endereço":', ultimoId)
+            if (ultimoId !== undefined) {
+                objSalvar.id_endereco = ultimoId;
+                console.log("ID inserido:", ultimoId);
+            } else {
+                throw new AppError("Não foi possível obter o último ID de endereço.", 404);
             }
-        })();
-    
+        } catch (error) {
+            console.error("Erro ao obter o último ID de endereço:", AppError);
+        }
+    })();
+
 
 
     if (!objSalvar?.id_endereco) {
@@ -103,6 +103,22 @@ router.get('/', (req, res) => {
 
 })
 
+
+router.get('/:cns', async (req, res) => {
+    const cns = req.params.cns;
+
+    try {
+        const paciente = await knex('paciente').where({ cns }).first();
+        if (paciente) {
+            res.json({ paciente });
+        } else {
+            res.status(404).json({ message: 'Paciente não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao consultar paciente:', error);
+        res.status(500).json({ message: 'Erro interno do servidor' });
+    }
+});
 
 router.put('/:id', async (req, res) => {
 
