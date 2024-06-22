@@ -59,22 +59,28 @@ public class PacienteHub extends JFrame {
     public PacienteHub() {
         service = new PacienteService();
 
-        JFrame frame = new JFrame("Paciente App");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        setTitle("Paciente App");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(800, 600);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        JPanel listPanel = getPaciente(tabbedPane);
-
+        JPanel listPanel = getPaciente();
         JPanel cadastroPanel = setPaciente();
 
         tabbedPane.addTab("Lista de Pacientes", listPanel);
         tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
 
-        frame.add(tabbedPane, BorderLayout.CENTER);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        add(tabbedPane, BorderLayout.CENTER);
+        setLocationRelativeTo(null);
+    }
+
+    public JPanel getPacienteContent() {
+        return getPaciente();
+    }
+
+    public JPanel getCadastroContent() {
+        return setPaciente();
     }
 
     private JPanel setPaciente() {
@@ -246,7 +252,7 @@ public class PacienteHub extends JFrame {
         painelEntrada.add(campoEstado, constraints);
 
         botaoCancelar = new JButton("Cancelar");
-        //botaoCancelar.addActionListener(e -> limparCampos());
+        botaoCancelar.addActionListener(e -> limparCampos());
         constraints.gridx = 0;
         constraints.gridy = 16;
         painelEntrada.add(botaoCancelar, constraints);
@@ -260,7 +266,7 @@ public class PacienteHub extends JFrame {
         return painelEntrada;
     }
 
-    private static JPanel getPaciente(JTabbedPane tabbedPane) {
+    private JPanel getPaciente() {
         // Panel da Lista de Pacientes
         JPanel listPanel = new JPanel(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane();
@@ -288,7 +294,6 @@ public class PacienteHub extends JFrame {
 
     private void salvar() {
         try {
-            System.out.println("Mensagem");
             service.salvar(construirPaciente());
         } catch (Exception e) {
             showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
@@ -320,9 +325,5 @@ public class PacienteHub extends JFrame {
         } catch (ParseException e) {
             throw new RuntimeException(e.getMessage());
         }
-
     }
 }
-
-
-

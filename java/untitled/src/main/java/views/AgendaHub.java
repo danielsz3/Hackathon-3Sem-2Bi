@@ -1,44 +1,52 @@
 package views;
 
-import service.PacienteService;
+import model.AgendamentoVisita;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
 
-public class VacinaHub{
+public class AgendaHub extends JFrame{
     //private PacienteService service;
     private JLabel labelId;
     private JTextField campoId;
-    private JLabel labelNome;
-    private JTextField campoNome;
+    private JLabel labelDataVisita;
+    private JTextField campoDataVisita;
     private JLabel labelDescricao;
     private JTextField campoDescricao;
 
     private JButton botaoSalvar;
     private JButton botaoCancelar;
 
-    public VacinaHub() {
+    String[] status = {
+            "EM ABERTO",
+            "ANDAMENTO",
+            "CANCELADO",
+            "FINALIZADO"
+    };
+
+
+    public AgendaHub() {
         //service = new PacienteService();
 
-        JFrame frame = new JFrame("Paciente App");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        JFrame AgendaHub = new JFrame("Agenda App");
+        AgendaHub.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        AgendaHub.setSize(800, 600);
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+        JTabbedPane abasAgenda = new JTabbedPane();
 
-        JPanel listPanel = getVacina(tabbedPane);
+        JPanel listPanel = getAgendamentos(abasAgenda);
 
-        JPanel cadastroPanel = setVacina();
+        JPanel cadastroPanel = setAgenda();
 
-        tabbedPane.addTab("Lista de Pacientes", listPanel);
-        tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
+        abasAgenda.addTab("Agendamentos", listPanel);
+        abasAgenda.addTab("Agenda", cadastroPanel);
 
-        frame.add(tabbedPane, BorderLayout.CENTER);
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+        AgendaHub.add(abasAgenda, BorderLayout.CENTER);
+        setLocationRelativeTo(null);
     }
 
-    private JPanel setVacina() {
+    private JPanel setAgenda() {
         JPanel painelEntrada = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(5, 5, 5, 5);
@@ -54,26 +62,21 @@ public class VacinaHub{
         constraints.gridy = 0;
         painelEntrada.add(campoId, constraints);
 
-        labelNome = new JLabel("Nome:");
+        labelDataVisita = new JLabel("Data Visita:");
         constraints.gridx = 0;
         constraints.gridy = 1;
-        painelEntrada.add(labelNome, constraints);
+        painelEntrada.add(labelDataVisita, constraints);
 
-        campoNome = new JTextField(20);
+        campoDataVisita = new JTextField(20);
         constraints.gridx = 1;
         constraints.gridy = 1;
-        painelEntrada.add(campoNome, constraints);
+        painelEntrada.add(campoDataVisita, constraints);
 
-        labelDescricao = new JLabel("Descrição:");
+        JComboBox<String> comboBox = new JComboBox<>(status);
         constraints.gridx = 0;
         constraints.gridy = 2;
-        painelEntrada.add(labelDescricao, constraints);
+        painelEntrada.add(comboBox, constraints);
 
-        campoDescricao = new JFormattedTextField();
-        campoDescricao.setColumns(20);
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-        painelEntrada.add(campoDescricao, constraints);
 
         botaoCancelar = new JButton("Cancelar");
         //botaoCancelar.addActionListener(e -> limparCampos());
@@ -90,7 +93,7 @@ public class VacinaHub{
         return painelEntrada;
     }
 
-    private JPanel getVacina(JTabbedPane tabbedPane) {
+    private JPanel getAgendamentos(JTabbedPane abasAgenda) {
         // Panel da Lista de Pacientes
         JPanel listPanel = new JPanel(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane();
