@@ -51,8 +51,6 @@ public class PacienteDao {
             pacientes.add(paciente);
         }
 
-        ps.execute();
-
         return pacientes;
     }
 
@@ -103,4 +101,3 @@ public class PacienteDao {
         ps.execute();
     }
 }
-

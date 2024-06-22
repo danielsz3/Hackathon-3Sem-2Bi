@@ -58,20 +58,22 @@ public class PacienteHub extends JFrame {
     public PacienteHub() {
         service = new PacienteService();
 
-        setTitle("Paciente App");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(800, 600);
+        JFrame frame = new JFrame("Paciente App");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(800, 600);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
         JPanel listPanel = getPaciente(tabbedPane);
+
         JPanel cadastroPanel = setPaciente();
 
         tabbedPane.addTab("Lista de Pacientes", listPanel);
         tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
 
-        add(tabbedPane, BorderLayout.CENTER);
-        setLocationRelativeTo(null);
+        frame.add(tabbedPane, BorderLayout.CENTER);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     private JPanel setPaciente() {
