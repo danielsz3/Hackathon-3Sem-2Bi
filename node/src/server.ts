@@ -34,8 +34,8 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     console.log(error)
 
     return res.status(500).json({
-        status: "erro",
-        message: "Lasco"
+        status: "Erro",
+        message: "Erro interno"
     })
 })
 
