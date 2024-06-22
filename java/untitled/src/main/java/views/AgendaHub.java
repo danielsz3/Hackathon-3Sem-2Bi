@@ -3,7 +3,8 @@ package views;
 import javax.swing.*;
 import java.awt.*;
 
-public class AgendaHub extends JFrame {
+public class AgendaHub extends JFrame{
+    //private PacienteService service;
     private JLabel labelId;
     private JTextField campoId;
     private JLabel labelDataVisita;
@@ -22,19 +23,22 @@ public class AgendaHub extends JFrame {
     };
 
     public AgendaHub() {
-        setTitle("Agenda App");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(800, 600);
+        //service = new PacienteService();
+
+        JFrame AgendaHub = new JFrame("Agenda App");
+        AgendaHub.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        AgendaHub.setSize(800, 600);
 
         JTabbedPane abasAgenda = new JTabbedPane();
 
-        JPanel listPanel = getAgendamentos();
+        JPanel listPanel = getAgendamentos(abasAgenda);
+
         JPanel cadastroPanel = setAgenda();
 
         abasAgenda.addTab("Agendamentos", listPanel);
         abasAgenda.addTab("Agenda", cadastroPanel);
 
-        add(abasAgenda, BorderLayout.CENTER);
+        AgendaHub.add(abasAgenda, BorderLayout.CENTER);
         setLocationRelativeTo(null);
     }
 
@@ -82,7 +86,8 @@ public class AgendaHub extends JFrame {
         return painelEntrada;
     }
 
-    private JPanel getAgendamentos() {
+    private JPanel getAgendamentos(JTabbedPane abasAgenda) {
+        // Panel da Lista de Pacientes
         JPanel listPanel = new JPanel(new BorderLayout());
         JScrollPane scrollPane = new JScrollPane();
         listPanel.add(scrollPane, BorderLayout.CENTER);

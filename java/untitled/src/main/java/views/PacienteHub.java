@@ -1,5 +1,6 @@
 package views;
 
+import model.Endereco;
 import model.Paciente;
 import service.PacienteService;
 
@@ -77,6 +78,7 @@ public class PacienteHub extends JFrame {
     }
 
     private JPanel setPaciente() {
+        // Painel de Cadastro de Pacientes
         JPanel painelEntrada = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(5, 5, 5, 5);
@@ -244,7 +246,7 @@ public class PacienteHub extends JFrame {
         painelEntrada.add(campoEstado, constraints);
 
         botaoCancelar = new JButton("Cancelar");
-        //botaoCancelar.addActionListener(e -> limparCampos());
+        botaoCancelar.addActionListener(e -> limparCampos());
         constraints.gridx = 0;
         constraints.gridy = 16;
         painelEntrada.add(botaoCancelar, constraints);
@@ -299,7 +301,6 @@ public class PacienteHub extends JFrame {
 
     private void salvar() {
         try {
-            System.out.println("Mensagem");
             service.salvar(construirPaciente());
         } catch (Exception e) {
             showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
