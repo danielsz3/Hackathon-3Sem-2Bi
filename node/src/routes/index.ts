@@ -1,11 +1,13 @@
 import { Router } from "express"
 
-import usuario from './paciente'
+import paciente from './paciente'
 import agenteSaude from './agenteSaude'
+import agendamentovisita from './agendamentovisita'
 
 const routes = Router()
 
-routes.use('/usuarios', usuario)
+routes.use('/paciente', paciente)
 routes.use('/agenteSaude', agenteSaude)
+routes.use('/agendamentovisita', agendamentovisita)
 
 export default routes
