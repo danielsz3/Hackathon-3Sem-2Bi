@@ -1,6 +1,4 @@
-  <?php
-  include "header.php"
-  ?>
+
   <title>Vacina Brasil - Principal</title>
   <main>
     <div id="carouselExampleCaptions" class="carousel slide carrosel">
@@ -119,6 +117,3 @@
       </div>
     </div>
   </main>
-  <?php
-  include "footer.php"
-  ?>

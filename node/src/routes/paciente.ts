@@ -19,35 +19,87 @@ const registerBodySchema = z.object({
 });
 
 router.post("/", async (req: Request, res: Response) => {
-    try {
-        const objSalvar = registerBodySchema.parse(req.body);
 
-        // Verificar se o ID de endereço existe na tabela `endereco`
-        const enderecoExiste = await knex('endereco')
-            .where('id', objSalvar.id_endereco)
-            .first();
+    const registerBodySchema = z.object({
+        id_endereco: z.number(),
+        nome: z.string({ message: "Nome Obrigatorio" }).max(100).min(8),
+        dataNascimento: z.string().max(10),
+        cpf: z.string({ message: "CPF Obrigatorio" }).max(11),
+        cns: z.string({ message: "CNS Obrigatorio" }).max(15),
+        celular: z.string({ message: "Celular Obrigatorio" }).max(11),
+        email: z.string({ message: "Email Obrigatorio" }).max(50),
+        nomeCuidador: z.string({ message: "Nome do cuidador Obrigatorio" }).max(100).min(6),
+        telefoneCuidador: z.string({ message: "Teleforne do Cuidador Obrigatorio" }).max(11)
+    })
+    const objSalvar = registerBodySchema.parse(req.body)
 
-        if (!enderecoExiste) {
-            throw new AppError("ID de endereço não encontrado na tabela 'endereco'", 404);
-        }
+    async function obterUltimoIdEndereco(): Promise<number> {
+        const id_ultimo_endereco = await knex('endereco')
+            .select<number[]>('id')
+            .orderBy('id', 'desc')
+            .first()
 
-        // Inserir o paciente no banco de dados
-        const id_paciente = await knex('paciente').insert(objSalvar);
 
-        // Recuperar o paciente recém-inserido para responder à requisição
-        const paciente = await knex('paciente').where({ id: id_paciente[0] }).first();
 
-        res.json({ message: "Paciente salvo com sucesso", paciente });
-    } catch (error) {
-        if (error instanceof AppError) {
-            res.status(error.statusCode).json({ error: error.message });
-        } else {
-            console.error("Erro ao inserir paciente:", error);
-            res.status(500).json({ error: "Erro interno do servidor" });
-        }
+        const ultimoId = Number(id_ultimo_endereco)
+        const id_endereco = ultimoId.toString().replace(/[^0-9]/g, '');
+        console.log('Maior ID da tabela "endereço":', ultimoId, id_ultimo_endereco)
+        return parseInt(id_endereco);
     }
-});
 
+    (async () => {
+        try {
+            const ultimoId = await obterUltimoIdEndereco();
+            console.log('Maior ID da tabela "endereço":', ultimoId)
+            if (ultimoId !== undefined) {
+                objSalvar.id_endereco = ultimoId;
+                console.log("ID inserido:", ultimoId);
+            } else {
+                throw new AppError("Não foi possível obter o último ID de endereço.", 404);
+            }
+        } catch (error) {
+            console.error("Erro ao obter o último ID de endereço:", AppError);
+        }
+    })();
+
+
+
+    if (!objSalvar?.id_endereco) {
+        throw new AppError("Id endereço Obrigatório")
+    }
+
+    if (!objSalvar?.nome) {
+        throw new AppError("Nome Obrigatório")
+    }
+    if (!objSalvar?.dataNascimento) {
+        throw new AppError("Data de Nascimento Obrigatório")
+    }
+    if (!objSalvar?.cpf) {
+        throw new AppError("CPF Obrigatório")
+    }
+    if (!objSalvar?.cns) {
+        throw new AppError("CNS Obrigatório")
+    }
+    if (!objSalvar?.celular) {
+        throw new AppError("Celular Obrigatório")
+    }
+    if (!objSalvar?.email) {
+        throw new AppError("Email Obrigatório")
+    }
+    if (!objSalvar?.nomeCuidador) {
+        throw new AppError("Nome Cuidador Obrigatório")
+    }
+    if (!objSalvar?.telefoneCuidador) {
+        throw new AppError("Telefone Cuidador Obrigatório")
+    }
+
+
+    const id_paciente = await knex('paciente').insert(objSalvar)
+    const paciente = await knex('paciente').where({ id: id_paciente[0] })
+    res.json({ message: "Paciente Salvar", paciente })
+
+
+})
 
 
 router.get('/', (req, res) => {
@@ -57,6 +109,22 @@ router.get('/', (req, res) => {
 
 })
 
+
+router.get('/:cns', async (req, res) => {
+    const cns = req.params.cns;
+
+    try {
+        const paciente = await knex('paciente').where({ cns }).first();
+        if (paciente) {
+            res.json({ paciente });
+        } else {
+            res.status(404).json({ message: 'Paciente não encontrado' });
+        }
+    } catch (error) {
+        console.error('Erro ao consultar paciente:', error);
+        res.status(500).json({ message: 'Erro interno do servidor' });
+    }
+});
 
 router.put('/:id', async (req, res) => {
 

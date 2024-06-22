@@ -1,6 +1,4 @@
-<?php
-include "header.php"
-?>
+
 <title>Vacina Brasil - Ver Agendamento</title>
 <main class="container my-4">
     <div class="text-center mb-4">
@@ -44,6 +42,3 @@ include "header.php"
         </table>
     </div>
 </main>
-<?php
-include "footer.php"
-?>
