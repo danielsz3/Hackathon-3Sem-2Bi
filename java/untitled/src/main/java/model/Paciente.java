@@ -11,7 +11,7 @@ public class Paciente extends Pessoa {
     private String nomeCuidador;
     private String telefoneCuidador;
 
-    public Paciente(Long id, String nome, String cpf, String celular, Date dataNascimento, String cns, String email, String nomeCuidador, String telefoneCuidador) {
+    public Paciente(Long id ,String nome, Date dataNascimento, String cns, String cpf, String celular,  String email, String nomeCuidador, String telefoneCuidador) {
         super(id, nome, cpf, celular);
         this.dataNascimento = dataNascimento;
         this.cns = cns;
