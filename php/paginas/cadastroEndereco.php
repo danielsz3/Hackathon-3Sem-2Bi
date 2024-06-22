@@ -1,8 +1,6 @@
 <?php
 include "header.php";
-$cep = $_POST['cep'] ?? NULL;
 ?>
-
 <title>Vacina Brasil - Cadastro de Endereço</title>
 <main class="container my-4">
     <div class="text-center mb-4">
@@ -51,29 +49,3 @@ $cep = $_POST['cep'] ?? NULL;
 <?php
 include "footer.php";
 ?>
-<script>
-document.getElementById('button-addon2').addEventListener('click', function() {
-    var cep = document.getElementById('cep').value;
-    if (cep) {
-        fetch('https://viacep.com.br/ws/' + cep + '/json')
-            .then(response => response.json())
-            .then(data => {
-                if (!data.erro) {
-                    document.getElementById('logradouro').value = data.logradouro;
-                    document.getElementById('bairro').value = data.bairro;
-                    document.getElementById('cidade').value = data.localidade;
-                    document.getElementById('uf').value = data.uf;
-                    document.getElementById('complemento').value = data.complemento || '';
-                } else {
-                    alert('CEP não encontrado.');
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching CEP data:', error);
-                alert('Erro ao buscar o CEP.');
-            });
-    } else {
-        alert('Por favor, insira um CEP.');
-    }
-});
-</script>
