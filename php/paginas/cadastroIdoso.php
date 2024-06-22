@@ -3,7 +3,7 @@
     <div class="text-center mb-4">
         <h1>Cadastro</h1>
     </div>
-    <form action="../../php/paginas/cadastroEndereco">
+    <form action="../../php/paginas/cadastroEndereco" method="POST">
         <div class="mb-3">
             <label for="nomeCompleto" class="form-label">Nome Completo</label>
             <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo" required>
@@ -26,7 +26,7 @@
         </div>
         <div class="text-center">
             <button type="button" class="btn btn-secondary mr-2">Cancelar</button>
-           <a href="../../php/paginas/main"><button type="submit" class="btn btn-primary">Cadastrar</button></a> 
+           <a href="../../php/paginas/agendamentoVisita"><button type="submit" class="btn btn-primary">Cadastrar</button></a> 
         </div>
     </form>
 </main>
