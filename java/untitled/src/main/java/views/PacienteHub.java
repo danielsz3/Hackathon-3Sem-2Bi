@@ -322,9 +322,6 @@ public class PacienteHub extends JFrame {
         }
 
     }
-
-    private Endereco construirEndereco() {
-        return
 }
 
 
