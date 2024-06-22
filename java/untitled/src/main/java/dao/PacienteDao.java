@@ -25,10 +25,10 @@ public class PacienteDao {
         return connection;
     }
 
-    public void inserir(Paciente paciente,Endereco endereco) throws SQLException {
+    public void inserir(Paciente paciente) throws SQLException {
         String sql = "insert into paciente(id_endereco,nome,dataNascimento,cpf,cns,celular,email,nomeCuidador,telefoneCuidador) values(?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setLong(1, endereco.getId());
+        ps.setLong(1, paciente.getEndereco().getId());
         ps.setString(2, paciente.getNome());
         ps.setDate(3, Date.valueOf(paciente.getDataNascimento()));
         ps.setString(4, paciente.getCpf());

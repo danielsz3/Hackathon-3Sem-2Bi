@@ -73,8 +73,8 @@ public class PacienteHub extends JFrame {
         tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
 
         frame.add(tabbedPane, BorderLayout.CENTER);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        setLocationRelativeTo(null);
     }
 
     private JPanel setPaciente() {
@@ -288,7 +288,8 @@ public class PacienteHub extends JFrame {
 
     private void salvar() {
         try {
-            service.salvar(construirEndereco(),construirPaciente());
+            System.out.println("Mensagem");
+            service.salvar(construirPaciente());
         } catch (Exception e) {
             showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -320,17 +321,6 @@ public class PacienteHub extends JFrame {
             throw new RuntimeException(e.getMessage());
         }
 
-    }
-
-    private Endereco construirEndereco() {
-        return new Endereco(
-                campoCep.getText(),
-                campoLogradouro.getText(),
-                campoNumero.getText(),
-                campoComplemento.getText(),
-                campoBairro.getText(),
-                campoCidade.getText(),
-                campoEstado.getText());
     }
 }
 
