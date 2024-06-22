@@ -4,11 +4,12 @@ module.exports = {
     development: {
         client: 'mysql',
         connection: {
-            host: 'localhost',
-            port: 3306,
+            host: '127.0.0.1',
+            port: 3333,
             user: 'root',
-            password: '',
-            database: 'dbVacinacao',
+            password: 'daniel',
+            database: 'dbvacinacao',
+            insecureAuth: true,
         },
         migrations: {
             directory: path.resolve(
