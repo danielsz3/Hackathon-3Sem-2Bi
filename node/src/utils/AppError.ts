@@ -1,10 +1,13 @@
-class AppError {
-    message
-    statusCode
+class AppError extends Error {
+    public readonly message: string
+    public readonly statusCode: number
+    public readonly campo?: string
 
-    constructor(message: string, statusCode = 400) {
+    constructor(message: string, statusCode = 400, campo?: string) {
+        super(message)
         this.message = message
         this.statusCode = statusCode
+        this.campo = campo
     }
 
     static notFound(message: string) {
