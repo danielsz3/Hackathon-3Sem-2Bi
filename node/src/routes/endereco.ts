@@ -1,5 +1,5 @@
 import Router, { Request, Response } from "express"
-import knex from "../database/knex"
+import knex from "../knex"
 import AppError from "../utils/AppError";
 import { hash } from 'bcrypt'
 import { z } from "zod"
@@ -43,7 +43,7 @@ router.post("/", async (req: Request, res: Response) => {
 
     const id_endereco = await knex('endereco').insert(objSalvar)
     const endereco = await knex('endereco').where({ id: id_endereco[0] })
-    res.json({ message: "Endereco Salvar" })
+    res.json({ message: "Endereco Salvar", endereco })
 
 })
 
