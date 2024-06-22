@@ -1,5 +1,5 @@
 import Router, { Request, Response } from "express";
-import knex from "../database/knex";
+import knex from "../knex";
 import AppError from "../utils/AppError";
 import { hash } from 'bcrypt';
 import { z } from "zod";
