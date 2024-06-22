@@ -222,3 +222,15 @@ Q.idea/sonarlint/securityhotspotstore/e/d/ed67eb178d523a4b3f117dcbe0eda5196367ce
 Q.idea/sonarlint/securityhotspotstore/e/9/e99db34fb1817d76551e605dd28acccdebcd33a2,a\2\a29b41af67d0c2f7cc31cd83e112f2784783dfbf
 Å
 Q.idea/sonarlint/securityhotspotstore/e/4/e49aa168b8b59a2314ab0034a4dd8678b6d700f3,5\0\50b44db71ceec3b8186c5366c8ea0282e0bffa65
+`
+0java/untitled/src/main/java/views/VacinaHub.java,1\7\17916d44d09ef840fb5444cca65eeb019b35f43a
+X
+(java/untitled/src/main/java/MainApp.java,f\b\fb651fffa96979ba7a8af5a5de1681bee9881ac1
+w
+G.idea/sonarlint/issuestore/1/7/17916d44d09ef840fb5444cca65eeb019b35f43a,4\4\44a8de517d730e6106eb3418a898a5710238bdd0
+w
+G.idea/sonarlint/issuestore/f/b/fb651fffa96979ba7a8af5a5de1681bee9881ac1,5\2\5254fe4b1bebb90c3a98bcb25e1ef37a41fca900
+Å
+Q.idea/sonarlint/securityhotspotstore/1/7/17916d44d09ef840fb5444cca65eeb019b35f43a,c\f\cf583a133551d8bf89d4e9a7fc58c1b5449dfcb6
+Å
+Q.idea/sonarlint/securityhotspotstore/f/b/fb651fffa96979ba7a8af5a5de1681bee9881ac1,8\2\828d843e9d71a8aac0fdac44ae8396a8e8c6bbc3

@@ -23,11 +23,9 @@ public class AgendaHub extends JFrame{
     };
 
     public AgendaHub() {
-        //service = new PacienteService();
-
-        JFrame AgendaHub = new JFrame("Agenda App");
-        AgendaHub.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        AgendaHub.setSize(800, 600);
+        super("Agenda App"); // Define o título do JFrame atual
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
 
         JTabbedPane abasAgenda = new JTabbedPane();
 
@@ -38,8 +36,8 @@ public class AgendaHub extends JFrame{
         abasAgenda.addTab("Agendamentos", listPanel);
         abasAgenda.addTab("Agenda", cadastroPanel);
 
-        AgendaHub.add(abasAgenda, BorderLayout.CENTER);
-        setLocationRelativeTo(null);
+        getContentPane().add(abasAgenda, BorderLayout.CENTER);
+        setLocationRelativeTo(null); // Centraliza o JFrame
     }
 
     private JPanel setAgenda() {
