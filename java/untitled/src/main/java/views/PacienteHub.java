@@ -254,14 +254,29 @@ public class PacienteHub extends JFrame {
         painelEntrada.add(botaoCancelar, constraints);
 
         botaoSalvar = new JButton("Salvar");
-        botaoSalvar.addActionListener(e -> salvar());
+        botaoSalvar.addActionListener(e -> limparCampos());
         constraints.gridx = 1;
+        constraints.gridy = 16;
+        painelEntrada.add(botaoSalvar, constraints);
+
+        botaoSalvar = new JButton("Deletar");
+        botaoSalvar.addActionListener(e -> deletar());
+        constraints.gridx = 3;
         constraints.gridy = 16;
         painelEntrada.add(botaoSalvar, constraints);
 
         return painelEntrada;
     }
 
+    private void deletar(){
+        try {
+            service.deletar(Long.valueOf(campoId.getText()));
+            limparCampos();
+            JOptionPane.showMessageDialog(this,"Paciente Deletado ! !");
+        } catch (Exception e){
+            showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
     private void limparCampos() {
         campoNome.setText("");
@@ -277,6 +292,7 @@ public class PacienteHub extends JFrame {
         campoNumero.setText("");
         campoComplemento.setText("");
         campoBairro.setText("");
+        campoCidade.setText("");
         campoEstado.setText("");
         campoId.setText("");
     }
@@ -284,6 +300,7 @@ public class PacienteHub extends JFrame {
     private void salvar() {
         try {
             service.salvar(construirPaciente());
+            limparCampos();
             JOptionPane.showMessageDialog(this,"Paciente Cadastrado ! !");
         } catch (Exception e) {
             showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
@@ -292,7 +309,8 @@ public class PacienteHub extends JFrame {
 
     private Paciente construirPaciente() {
         try {
-            return new Paciente(
+            return campoId.getText().isEmpty() ?
+                    new Paciente(
                     campoNome.getText(),
                     campoCpf.getText(),
                     campoCelular.getText(),
@@ -308,6 +326,24 @@ public class PacienteHub extends JFrame {
                     campoEmail.getText(),
                     campoNomeCuidador.getText(),
                     campoTelefoneCuidador.getText()
+                    ):
+                    new Paciente(
+                            Long.parseLong(campoId.getText()),
+                            campoNome.getText(),
+                            campoCpf.getText(),
+                            campoCelular.getText(),
+                            parseDate(campoDataNascimento.getText()),
+                            campoCns.getText(),
+                            campoEmail.getText(),
+                            campoNomeCuidador.getText(),
+                            campoTelefoneCuidador.getText(),
+                            new Endereco(campoCep.getText(),
+                                    campoLogradouro.getText(),
+                                    campoNumero.getText(),
+                                    campoComplemento.getText(),
+                                    campoBairro.getText(),
+                                    campoCidade.getText(),
+                                    campoEstado.getText())
                     );
         } catch (ParseException e) {
             throw new RuntimeException(e.getMessage());

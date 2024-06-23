@@ -70,6 +70,32 @@ public class PacienteDao {
         ps.execute();
     }
 
+    public void editar(Paciente paciente) throws SQLException {
+        String sql = "UPDATE paciente SET nome=?, dataNascimento=?, cpf=?, cns=?, celular=?, email=?, nomeCuidador=?, telefoneCuidador=? WHERE id=?";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, paciente.getNome());
+        ps.setDate(2, Date.valueOf(paciente.getDataNascimento()));
+        ps.setString(3, paciente.getCpf());
+        ps.setString(4, paciente.getCns());
+        ps.setString(5, paciente.getCelular());
+        ps.setString(6, paciente.getEmail());
+        ps.setString(7, paciente.getNomeCuidador());
+        ps.setString(8, paciente.getTelefoneCuidador());
+        ps.setLong(9, paciente.getId());
+
+        ps.execute();
+    }
+
+    public void deletar(Long id) throws SQLException {
+        String sql = "DELETE FROM paciente WHERE id=?";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setLong(1, id);
+
+        ps.execute();
+    }
+
     public List<Paciente> listarTodos() throws SQLException {
         List<Paciente> Pacientes = new ArrayList<Paciente>();
 

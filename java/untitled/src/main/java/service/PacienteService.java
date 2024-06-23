@@ -27,6 +27,8 @@ public class PacienteService {
                 }
                 System.out.println(daoEndereco.consultarMaiorId());
                 daoPaciente.inserir(paciente);
+            } else {
+                daoPaciente.editar(paciente);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -60,6 +62,15 @@ public class PacienteService {
         }catch (Exception e){
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+    
+    public void deletar(Long id){
+        try {
+            var dao = new PacienteDao();
+            dao.deletar(id);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 }
