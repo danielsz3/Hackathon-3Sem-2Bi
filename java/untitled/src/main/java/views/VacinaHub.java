@@ -132,7 +132,7 @@ public class VacinaHub extends JFrame {
     private void salvar() {
         String nome = campoNome.getText();
         String descricao = campoDescricao.getText();
-        Integer id = campoId.getText().isEmpty() ? null : Integer.parseInt(campoId.getText());
+        Long id = campoId.getText().isEmpty() ? null : Long.parseLong(campoId.getText());
 
         Vacina vacina = new Vacina(id, nome, descricao);
         service.salvar(vacina);
@@ -143,7 +143,7 @@ public class VacinaHub extends JFrame {
     private void excluir() {
         int row = tabela.getSelectedRow();
         if (row >= 0) {
-            Integer id = (Integer) tableModel.getValueAt(row, 0);
+            Long id = (Long) tableModel.getValueAt(row, 0);
             service.excluir(id);
             atualizarTabela();
             limparCampos();

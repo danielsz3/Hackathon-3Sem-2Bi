@@ -37,7 +37,7 @@ public class VacinaDao {
         ResultSet rs = connection.prepareStatement("select * from vacina").executeQuery();
         while (rs.next()) {
             vacinas.add(new Vacina(
-                    rs.getInt("id"),
+                    rs.getLong("id"),
                     rs.getString("nomeVacina"),
                     rs.getString("descricao")));
 
@@ -52,14 +52,14 @@ public class VacinaDao {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, vacina.getNomeVacina());
         ps.setString(2, vacina.getDescricao());
-        ps.setInt(3, vacina.getId());
+        ps.setLong(3, vacina.getId());
         ps.execute();
     }
 
-    public void deletar(int id) throws SQLException {
+    public void deletar(Long id) throws SQLException {
         String sql = "delete from Vacina where id = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, id);
+        ps.setLong(1, id);
         ps.execute();
     }
 }

@@ -24,7 +24,7 @@ public class VacinaService {
         }
     }
 
-    public void excluir(Integer id) {
+    public void excluir(Long id) {
         try {
             var dao = new VacinaDao();
             if (id != null && id > 0) {

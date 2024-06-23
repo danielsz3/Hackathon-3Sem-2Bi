@@ -1,11 +1,17 @@
 package views;
 
+import dao.VacinaDao;
+import model.Vacina;
+import service.VacinaService;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.List;
 
-public class AgendaHub extends JFrame{
-    //private PacienteService service;
+public class AgendaHub extends JFrame {
+    private VacinaService service;
     private JLabel labelId;
     private JTextField campoId;
     private JLabel labelDataVisita;
@@ -56,45 +62,17 @@ public class AgendaHub extends JFrame{
         return painel;
     }
 
-    private JPanel mostrarVacinas() {
+    private JPanel mostrarVacinas(){
         JPanel painelSaida = new JPanel(new BorderLayout());
-        /// Define os dados da tabela
-        String[] columnNames = {"Selecionado", "Item", "Descrição"};
-        Object[][] data = {
-                {false, "Item 1", "Descrição"},
-                {false, "Item 2", "Descrição"},
-                {false, "Item 3", "Descrição"},
-                {false, "Item 4", "Descrição"},
-                {false, "Item 5", "Descrição"},
-                {false, "Item 6", "Descrição"},
-        };
-
-        // Cria o modelo da tabela
-        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
-            @Override
-            public Class<?> getColumnClass(int column) {
-                if (column == 0) {
-                    return Boolean.class;
-                } else {
-                    return String.class;
-                }
-            }
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return column == 0; // Somente a coluna de checkboxes é editável
-            }
-        };
-
-        // Cria a JTable com o modelo
-        JTable table = new JTable(model);
+        JTable tabela = new JTable();
+        tabela.setModel(carregarDados());
 
         // Adiciona a tabela a um JScrollPane
-        JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(tabela);
         JLabel titulo = new JLabel("Prontuário");
         painelSaida.setLayout(new BorderLayout());
         painelSaida.add(titulo, BorderLayout.NORTH);
-        painelSaida.add(scrollPane,BorderLayout.SOUTH);
+        painelSaida.add(scrollPane, BorderLayout.SOUTH);
         return painelSaida;
     }
 
@@ -138,7 +116,7 @@ public class AgendaHub extends JFrame{
         labelAgente = new JLabel("Agente:");
         constraints.gridx = 0;
         constraints.gridy = 3;
-        painel.add(labelDataVisita, constraints);
+        painel.add(labelAgente, constraints);
 
         menuAgente = new JComboBox<>(agentes);
         constraints.gridx = 1;
@@ -174,12 +152,22 @@ public class AgendaHub extends JFrame{
         searchPanel.add(campoDataVisita);
         searchPanel.add(searchButton);
 
-        JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "SITUAÇÃO", "DATA VISITA","CPF PACIENTE","NOME AGENTE","AÇÃO"}, 0));
+        JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "SITUAÇÃO", "DATA VISITA", "CPF PACIENTE", "NOME AGENTE", "AÇÃO"}, 0));
         JScrollPane scrollPane = new JScrollPane(table);
 
         listPanel.add(searchPanel, BorderLayout.NORTH);
         listPanel.add(scrollPane, BorderLayout.CENTER);
 
         return listPanel;
+    }
+
+    private DefaultTableModel carregarDados() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nome");
+        model.addColumn("Descrição");
+        service.listarTodos().forEach(vacina -> model.addRow(new Object[]{vacina.getId(), vacina.getNomeVacina(), vacina.getDescricao(),false}));
+        return model;
+
     }
 }
