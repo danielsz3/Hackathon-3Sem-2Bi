@@ -12,6 +12,8 @@ public class AgendaHub extends JFrame{
     private JFormattedTextField campoDataVisita;
     private JLabel labelSituacao;
     private JComboBox<String> menuSituacao;
+    private JLabel labelAgente;
+    private JComboBox<String> menuAgente;
 
     private JButton botaoSalvar;
     private JButton botaoCancelar;
@@ -21,6 +23,12 @@ public class AgendaHub extends JFrame{
             "ANDAMENTO",
             "CANCELADO",
             "FINALIZADO"
+    };
+    String[] agentes = {
+            "Agente 1",
+            "Agente 2",
+            "Agente 3",
+            "Agente 4"
     };
 
     public AgendaHub() {
@@ -117,24 +125,34 @@ public class AgendaHub extends JFrame{
         constraints.gridy = 1;
         painel.add(campoDataVisita, constraints);
 
-        labelDataVisita = new JLabel("Situação:");
+        labelSituacao = new JLabel("Situação:");
         constraints.gridx = 0;
         constraints.gridy = 2;
-        painel.add(labelDataVisita, constraints);
+        painel.add(labelSituacao, constraints);
 
         menuSituacao = new JComboBox<>(status);
         constraints.gridx = 1;
         constraints.gridy = 2;
         painel.add(menuSituacao, constraints);
 
-        botaoCancelar = new JButton("Cancelar");
+        labelAgente = new JLabel("Agente:");
         constraints.gridx = 0;
         constraints.gridy = 3;
+        painel.add(labelDataVisita, constraints);
+
+        menuAgente = new JComboBox<>(agentes);
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        painel.add(menuAgente, constraints);
+
+        botaoCancelar = new JButton("Cancelar");
+        constraints.gridx = 0;
+        constraints.gridy = 4;
         painel.add(botaoCancelar, constraints);
 
         botaoSalvar = new JButton("Salvar");
         constraints.gridx = 1;
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         painel.add(botaoSalvar, constraints);
         return painel;
     }

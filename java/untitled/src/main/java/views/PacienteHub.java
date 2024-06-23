@@ -1,11 +1,15 @@
 package views;
 
+import model.Endereco;
 import model.Paciente;
 import service.PacienteService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
@@ -50,6 +54,8 @@ public class PacienteHub extends JFrame {
     private JButton botaoSalvar;
     private JButton botaoCancelar;
 
+    private JTable tabela;
+    private JTabbedPane tabbedPane;
     private Date parseDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return new Date(format.parse(date).getTime());
@@ -62,7 +68,7 @@ public class PacienteHub extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
 
         JPanel listPanel = getPaciente(tabbedPane);
         JPanel cadastroPanel = setPaciente();
@@ -256,26 +262,6 @@ public class PacienteHub extends JFrame {
         return painelEntrada;
     }
 
-    private JPanel getPaciente(JTabbedPane tabbedPane) {
-        JPanel listPanel = new JPanel(new BorderLayout());
-
-        JPanel searchPanel = new JPanel();
-        JLabel searchLabel = new JLabel("Buscar por CPF:");
-        JTextField searchField = new JTextField(15);
-        JButton searchButton = new JButton("Buscar");
-
-        searchPanel.add(searchLabel);
-        searchPanel.add(searchField);
-        searchPanel.add(searchButton);
-
-        JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "Nome", "CPF"}, 0));
-        JScrollPane scrollPane = new JScrollPane(table);
-
-        listPanel.add(searchPanel, BorderLayout.NORTH);
-        listPanel.add(scrollPane, BorderLayout.CENTER);
-
-        return listPanel;
-    }
 
     private void limparCampos() {
         campoNome.setText("");
@@ -297,8 +283,8 @@ public class PacienteHub extends JFrame {
 
     private void salvar() {
         try {
-            System.out.println("Mensagem");
             service.salvar(construirPaciente());
+            JOptionPane.showMessageDialog(this,"Paciente Cadastrado ! !");
         } catch (Exception e) {
             showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -306,28 +292,172 @@ public class PacienteHub extends JFrame {
 
     private Paciente construirPaciente() {
         try {
-            return campoId.getText().isEmpty()
-                    ? new Paciente(
+            return new Paciente(
                     campoNome.getText(),
                     campoCpf.getText(),
                     campoCelular.getText(),
+                    new Endereco(campoCep.getText(),
+                            campoLogradouro.getText(),
+                            campoNumero.getText(),
+                            campoComplemento.getText(),
+                            campoBairro.getText(),
+                            campoCidade.getText(),
+                            campoEstado.getText()),
                     parseDate(campoDataNascimento.getText()),
                     campoCns.getText(),
                     campoEmail.getText(),
                     campoNomeCuidador.getText(),
-                    campoTelefoneCuidador.getText())
-                    : new Paciente(
-                    Long.parseLong(campoId.getText()),
-                    campoNome.getText(),
-                    parseDate(campoDataNascimento.getText()),
-                    campoCpf.getText(),
-                    campoCns.getText(),
-                    campoCelular.getText(),
-                    campoEmail.getText(),
-                    campoNomeCuidador.getText(),
-                    campoTelefoneCuidador.getText());
+                    campoTelefoneCuidador.getText()
+                    );
         } catch (ParseException e) {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    class ButtonRenderer extends JButton implements TableCellRenderer {
+
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                                                       boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "Editar" : value.toString());
+            return this;
+        }
+    }
+
+
+    class ButtonEditor extends DefaultCellEditor {
+        protected JButton button;
+        private String label;
+        private boolean isPushed;
+        private JTable table;
+        private PacienteHub pacienteHub;
+
+        public ButtonEditor(JCheckBox checkBox, PacienteHub pacienteHub) {
+            super(checkBox);
+            this.pacienteHub = pacienteHub;
+            button = new JButton();
+            button.setOpaque(true);
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                }
+            });
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                                                     boolean isSelected, int row, int column) {
+            this.table = table;
+            if (isSelected) {
+                button.setForeground(table.getSelectionForeground());
+                button.setBackground(table.getSelectionBackground());
+            } else {
+                button.setForeground(table.getForeground());
+                button.setBackground(table.getBackground());
+            }
+            label = (value == null) ? "Editar" : value.toString();
+            button.setText(label);
+            isPushed = true;
+            return button;
+        }
+
+        public Object getCellEditorValue() {
+            if (isPushed) {
+                int row = table.getSelectedRow();
+                Paciente paciente = pacienteHub.getPacienteFromTable(row);
+                pacienteHub.carregarDadosPaciente(paciente);
+                pacienteHub.setSelectedTab(1); // Mudando para a aba de cadastro
+            }
+            isPushed = false;
+            return new String(label);
+        }
+
+        public boolean stopCellEditing() {
+            isPushed = false;
+            return super.stopCellEditing();
+        }
+
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
+    }
+
+    public Paciente getPacienteFromTable(int row) {
+        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        return service.buscarPorId((Long) model.getValueAt(row, 0));
+    }
+
+    public void carregarDadosPaciente(Paciente paciente) {
+        campoId.setText(String.valueOf(paciente.getId()));
+        campoNome.setText(paciente.getNome());
+        campoDataNascimento.setText(paciente.getDataNascimento().toString());
+        campoCpf.setText(paciente.getCpf());
+        campoCns.setText(paciente.getCns());
+        campoCelular.setText(paciente.getCelular());
+        campoEmail.setText(paciente.getEmail());
+        campoNomeCuidador.setText(paciente.getNomeCuidador());
+        campoTelefoneCuidador.setText(paciente.getTelefoneCuidador());
+        campoCep.setText(paciente.getEndereco().getCep());
+        campoLogradouro.setText(paciente.getEndereco().getLogradouro());
+        campoNumero.setText(paciente.getEndereco().getNumero());
+        campoComplemento.setText(paciente.getEndereco().getComplemento());
+        campoBairro.setText(paciente.getEndereco().getBairro());
+        campoCidade.setText(paciente.getEndereco().getCidade());
+        campoEstado.setText(paciente.getEndereco().getEstado());
+    }
+
+    public void setSelectedTab(int index) {
+        tabbedPane.setSelectedIndex(index);
+    }
+    private DefaultTableModel carregarDados() {
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 7; // Permitir edição apenas na coluna "Ações"
+            }
+        };
+        model.addColumn("ID");
+        model.addColumn("Nome");
+        model.addColumn("CPF");
+        model.addColumn("Telefone");
+        model.addColumn("CNS");
+        model.addColumn("Nome Cuidador");
+        model.addColumn("Telefone Cuidador");
+        model.addColumn("Ações");
+
+        service.buscar().forEach(paciente -> model.addRow(new Object[]{paciente.getId(), paciente.getNome(), paciente.getCpf(), paciente.getCelular(), paciente.getCns(),paciente.getNomeCuidador(),paciente.getTelefoneCuidador(), "Editar"}));
+        return model;
+    }
+
+    private JPanel getPaciente(JTabbedPane tabbedPane) {
+        JPanel listPanel = new JPanel(new BorderLayout());
+
+        JPanel searchPanel = new JPanel();
+        JLabel searchLabel = new JLabel("Buscar por CPF:");
+        JTextField searchField = new JTextField(15);
+        JButton searchButton = new JButton("Buscar");
+
+        searchButton.addActionListener(e -> service.buscarPorCpf(searchField.getText()));
+
+        searchPanel.add(searchLabel);
+        searchPanel.add(searchField);
+        searchPanel.add(searchButton);
+
+        tabela = new JTable();
+        tabela.setModel(carregarDados());
+        tabela.getTableHeader().setReorderingAllowed(false);
+        tabela.setDefaultEditor(Object.class, null);
+        tabela.getColumn("Ações").setCellRenderer(new ButtonRenderer());
+        tabela.getColumn("Ações").setCellEditor(new ButtonEditor(new JCheckBox(), this));
+        JScrollPane scrollPane = new JScrollPane(tabela);
+
+        listPanel.add(searchPanel, BorderLayout.NORTH);
+        listPanel.add(scrollPane, BorderLayout.CENTER);
+
+        return listPanel;
+    }
+
+
 }

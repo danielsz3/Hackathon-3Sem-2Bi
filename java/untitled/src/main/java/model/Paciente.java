@@ -11,8 +11,19 @@ public class Paciente extends Pessoa {
     private String nomeCuidador;
     private String telefoneCuidador;
 
-    public Paciente(Long id ,String nome, Date dataNascimento, String cns, String cpf, String celular,  String email, String nomeCuidador, String telefoneCuidador) {
+    public Paciente(Long id, String nome, String cpf, String celular, Date dataNascimento, String cns, String email, String nomeCuidador, String telefoneCuidador, Endereco endereco) {
         super(id, nome, cpf, celular);
+        this.dataNascimento = dataNascimento;
+        this.cns = cns;
+        this.email = email;
+        this.nomeCuidador = nomeCuidador;
+        this.telefoneCuidador = telefoneCuidador;
+        this.endereco = endereco;
+    }
+
+    public Paciente(String nome, String cpf, String celular, Endereco endereco, Date dataNascimento, String cns, String email, String nomeCuidador, String telefoneCuidador) {
+        super(0L, nome, cpf, celular);
+        this.endereco = endereco;
         this.dataNascimento = dataNascimento;
         this.cns = cns;
         this.email = email;
@@ -20,13 +31,12 @@ public class Paciente extends Pessoa {
         this.telefoneCuidador = telefoneCuidador;
     }
 
-    public Paciente(String nome, String cpf, String celular, Date dataNascimento, String cns, String email, String nomeCuidador, String telefoneCuidador) {
-        super(0L,nome, cpf, celular);
-        this.dataNascimento = dataNascimento;
+    public Paciente(Long id,String nome, String cpf, String celular,String cns, String nomeCuidador, String telefoneCuidador){
+        super(id, nome, cpf, celular);
         this.cns = cns;
-        this.email = email;
         this.nomeCuidador = nomeCuidador;
         this.telefoneCuidador = telefoneCuidador;
+
     }
 
     public Endereco getEndereco() {
