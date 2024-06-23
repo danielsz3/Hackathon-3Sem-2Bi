@@ -1,8 +1,12 @@
 
+
+
 <title>Vacina Brasil - Cadastro</title>
 
+<h1>Cadastro</h1>
+
 <div class="container mt-5">
-    <form action="./cadastroEndereco.php" id="myForm">
+    <form action="./cadastroEndereco" method="POST" id="myForm">
         <div class="form-group mb-3">
             <label for="fullName">Nome Completo:</label>
             <input type="text" class="form-control" id="fullName" name="nomeCompleto">
@@ -13,6 +17,11 @@
             <label for="cpf">CPF:</label>
             <input type="text" class="form-control" placeholder="xxx.xxx.xxx-xx" id="cpf" name="cpf">
             <div id="cpfFeedback" class="invalid-feedback"></div>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label for="cpf">Data de Nascimento</label>
+            <input type="date" class="form-control" id="data" name="data">
         </div>
 
         <div class="form-group mb-3">
@@ -41,13 +50,13 @@
 
         <div class="form-group mb-3">
             <label for="cns">CNS:</label>
-            <input type="text" class="form-control" id="cns" value='<? $_POST['verificarCNS'] ?>' name="cns">
+            <input type="text" class="form-control" id="cns" name="cns">
             <div id="cnsFeedback" class="invalid-feedback"></div>
         </div>
 
         <div class="text-center">
             <button type="button" class="btn btn-secondary mr-2">Cancelar</button>
-            <a href="../../php/paginas/main"><button type="submit" class="btn btn-primary">Cadastrar</button></a>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
     </form>
 </div>
