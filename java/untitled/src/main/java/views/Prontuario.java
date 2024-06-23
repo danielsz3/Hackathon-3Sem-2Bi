@@ -1,2 +1,5 @@
-package views;public class Prontuario {
+package views;
+
+public class Prontuario {
+
 }
