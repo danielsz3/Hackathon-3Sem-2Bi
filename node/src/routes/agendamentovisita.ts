@@ -22,6 +22,7 @@ router.post("/", async (req: Request, res: Response) => {
     res.json({ message: "Agendamento de Visita Salvo", agendamento })
 })
 
+
 router.get("/", async (req: Request, res: Response) => {
     const agendamentos = await knex('agendamentovisita')
         .select(

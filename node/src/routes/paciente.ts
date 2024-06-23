@@ -32,35 +32,6 @@ router.post("/", async (req: Request, res: Response) => {
         telefoneCuidador: z.string({ message: "Teleforne do Cuidador Obrigatorio" }).max(11)
     })
     const objSalvar = registerBodySchema.parse(req.body)
-/*
-    async function obterUltimoIdEndereco(): Promise<number> {
-        const id_ultimo_endereco = await knex('endereco')
-            .select<number[]>('id')
-            .orderBy('id', 'desc')
-            .first()
-
-        const ultimoId = Number(id_ultimo_endereco)
-        const id_endereco = ultimoId.toString().replace(/[^0-9]/g, '');
-        console.log('Maior ID da tabela "endereço":', ultimoId, id_ultimo_endereco)
-        return parseInt(id_endereco);
-    }
-
-    (async () => {
-        try {
-            const ultimoId = await obterUltimoIdEndereco();
-            console.log('Maior ID da tabela "endereço":', ultimoId)
-            if (ultimoId !== undefined) {
-                objSalvar.id_endereco = ultimoId;
-                console.log("ID inserido:", ultimoId);
-            } else {
-                throw new AppError("Não foi possível obter o último ID de endereço.", 404);
-            }
-        } catch (error) {
-            console.error("Erro ao obter o último ID de endereço:", AppError);
-        }
-    })();
-*/
-
 
     if (!objSalvar?.id_endereco) {
         throw new AppError("Id endereço Obrigatório")
@@ -98,7 +69,6 @@ router.post("/", async (req: Request, res: Response) => {
 
 
 })
-
 
 router.get('/', (req, res) => {
     knex('paciente').then((resposta) => {
