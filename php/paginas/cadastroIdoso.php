@@ -48,12 +48,6 @@
             <div id="caregiverPhoneFeedback" class="invalid-feedback"></div>
         </div>
 
-        <div class="form-group mb-3">
-            <label for="cns">CNS:</label>
-            <input type="text" class="form-control" id="cns" name="cns">
-            <div id="cnsFeedback" class="invalid-feedback"></div>
-        </div>
-
         <div class="text-center">
             <button type="button" class="btn btn-secondary mr-2">Cancelar</button>
             <button type="submit" class="btn btn-primary">Cadastrar</button>

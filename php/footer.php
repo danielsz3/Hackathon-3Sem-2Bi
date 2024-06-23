@@ -4,16 +4,16 @@
             <div class="col">
                 <h5 class="text-uppercase">Programa de Vacinação</h5><br>
                 <p>
-                    Agulhadas.
+                    Vacinação Para Todos.
                 </p><br>
             </div>
 
             <div class="col">
                 <h5 class="text-uppercase">Redes Sociais</h5><br>
-                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button" style="border-radius:50px" target="_blank">
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button" style="border-radius:50px">
                     <i class="bi bi-facebook"></i>
                 </a>
-                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button" style="border-radius:50px" target="_blank">
+                <a class="btn btn-outline-light btn-floating m-1" href="#" role="button" style="border-radius:50px">
                     <i class="bi bi-instagram"></i>
                 </a><br>
             </div>

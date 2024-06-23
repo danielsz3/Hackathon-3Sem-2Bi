@@ -96,20 +96,31 @@ if (!empty($_POST)) {
 
         curl_close($ch);
 
+        // Decodificar a resposta JSON
+        $resultadoConsulta = json_decode($response, true);
+
+        // Exibir a resposta
+        var_dump($resultadoConsulta);
+
+        
     }
+
     /*
-else {
-    $_SESSION['paciente'] = [ //variavel global
-        'id' => $resultadoConsulta['paciente']['id'],
-        'nome' => $resultadoConsulta['paciente']['nome']
-    ];
-    echo "<script>location.href='veragendamento'</script>";
-}
+    if (empty($dados)) {
+        $json_file = file_get_contents('http://viacep.com.br/ws/' . $cep . '/json');
+        $dados = json_decode($json_file, true);
+
+        if (!isset($dados['erro'])) {
+            $dados['cep'] = preg_replace('/-/', '', $dados['cep']);
+        } else {
+        }
+    }
 */
 }
 
 
 ?>
+
 <title>Vacina Brasil - Cadastro de Endereço</title>
 <main class="container my-4">
     <div class="text-center mb-4">

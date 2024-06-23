@@ -13,4 +13,3 @@ if (isset($_GET['param'])) {
     }
 }
 ?>
-
