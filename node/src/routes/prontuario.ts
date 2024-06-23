@@ -10,7 +10,6 @@ const prontuarioBodySchema = z.object({
     id_agendamentoVisita: z.number().int()
 })
 
-
 router.post('/prontuario', async (req, res) => {
     const { id_vacina, id_agendamentoVisita } = prontuarioBodySchema.parse(req.body)
 
