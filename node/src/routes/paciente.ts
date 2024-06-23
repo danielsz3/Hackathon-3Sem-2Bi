@@ -32,7 +32,7 @@ router.post("/", async (req: Request, res: Response) => {
         telefoneCuidador: z.string({ message: "Teleforne do Cuidador Obrigatorio" }).max(11)
     })
     const objSalvar = registerBodySchema.parse(req.body)
-
+/*
     async function obterUltimoIdEndereco(): Promise<number> {
         const id_ultimo_endereco = await knex('endereco')
             .select<number[]>('id')
@@ -59,7 +59,7 @@ router.post("/", async (req: Request, res: Response) => {
             console.error("Erro ao obter o último ID de endereço:", AppError);
         }
     })();
-
+*/
 
 
     if (!objSalvar?.id_endereco) {
