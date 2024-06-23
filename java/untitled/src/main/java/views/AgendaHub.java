@@ -1,10 +1,7 @@
 package views;
 
-import model.AgendamentoVisita;
-
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 
 public class AgendaHub extends JFrame{
     //private PacienteService service;
@@ -25,13 +22,10 @@ public class AgendaHub extends JFrame{
             "FINALIZADO"
     };
 
-
     public AgendaHub() {
-        //service = new PacienteService();
-
-        JFrame AgendaHub = new JFrame("Agenda App");
-        AgendaHub.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        AgendaHub.setSize(800, 600);
+        super("Agenda App"); // Define o título do JFrame atual
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
 
         JTabbedPane abasAgenda = new JTabbedPane();
 
@@ -42,8 +36,8 @@ public class AgendaHub extends JFrame{
         abasAgenda.addTab("Agendamentos", listPanel);
         abasAgenda.addTab("Agenda", cadastroPanel);
 
-        AgendaHub.add(abasAgenda, BorderLayout.CENTER);
-        setLocationRelativeTo(null);
+        getContentPane().add(abasAgenda, BorderLayout.CENTER);
+        setLocationRelativeTo(null); // Centraliza o JFrame
     }
 
     private JPanel setAgenda() {
@@ -77,15 +71,12 @@ public class AgendaHub extends JFrame{
         constraints.gridy = 2;
         painelEntrada.add(comboBox, constraints);
 
-
         botaoCancelar = new JButton("Cancelar");
-        //botaoCancelar.addActionListener(e -> limparCampos());
         constraints.gridx = 0;
         constraints.gridy = 16;
         painelEntrada.add(botaoCancelar, constraints);
 
         botaoSalvar = new JButton("Salvar");
-        //botaoSalvar.addActionListener(e -> salvar());
         constraints.gridx = 1;
         constraints.gridy = 16;
         painelEntrada.add(botaoSalvar, constraints);
