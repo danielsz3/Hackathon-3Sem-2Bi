@@ -4,7 +4,7 @@
             <div class="col">
                 <h5 class="text-uppercase">Programa de Vacinação</h5><br>
                 <p>
-                    Agulhadas.
+                    Vacinação Para Todos.
                 </p><br>
             </div>
 

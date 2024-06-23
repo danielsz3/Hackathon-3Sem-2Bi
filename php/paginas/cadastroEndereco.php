@@ -97,11 +97,6 @@ if (isset($_POST['cep'])) {
         
     }
 
-
-
-
-
-
     /*
     if (empty($dados)) {
         $json_file = file_get_contents('http://viacep.com.br/ws/' . $cep . '/json');
@@ -183,7 +178,32 @@ if (isset($_POST['cep'])) {
 
     </form>
 </main>
-
+<script>
+document.getElementById('button-addon2').addEventListener('click', function() {
+    var cep = document.getElementById('cep').value;
+    if (cep) {
+        fetch('https://viacep.com.br/ws/' + cep + '/json')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.erro) {
+                    document.getElementById('logradouro').value = data.logradouro;
+                    document.getElementById('bairro').value = data.bairro;
+                    document.getElementById('cidade').value = data.localidade;
+                    document.getElementById('uf').value = data.uf;
+                    document.getElementById('complemento').value = data.complemento || '';
+                } else {
+                    alert('CEP não encontrado.');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching CEP data:', error);
+                alert('Erro ao buscar o CEP.');
+            });
+    } else {
+        alert('Por favor, insira um CEP.');
+    }
+});
+</script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>

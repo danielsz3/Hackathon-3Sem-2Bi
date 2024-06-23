@@ -52,40 +52,70 @@
 </main>
 
 
-<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel">Informações da Consulta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Vacinas</h5>
             </div>
             <div class="modal-body">
-                Detalhes sobre a consulta...
+                <p><strong>Local:</strong> Av teste da silva, Centro, N100, Casa Cidade Fantasma, SP</p>
+                <p><strong>Data e hora:</strong> 10/06/2024 às 17:00 horas</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Vacina</th>
+                            <th>Posto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina B</td>
+                            <td>Posto A</td>
+                        </tr>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina A</td>
+                            <td>Posto A</td>
+                        </tr>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina A</td>
+                            <td>Posto A</td>
+                        </tr>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina A</td>
+                            <td>Posto A</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Agente de Saúde:</strong> João Gabryel - CRM 6666</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Reagendar</button>
             </div>
         </div>
     </div>
 </div>
 
 
+
 <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="configModalLabel">Configurações da Consulta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="configModalLabel">Cancelar Agendamento</h5>
             </div>
             <div class="modal-body">
-                Opções de configuração...
+                <span>Deseja cancelar esse agendamento?</span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+            <button type="button" class="btn btn-primary">Sim</button>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 <title>Vacina Brasil - Cadastro</title>
 
 <div class="container mt-5">
-    <form action="./cadastroEndereco.php" id="myForm">
+    <form action="./cadastroEndereco" id="myForm">
         <div class="form-group mb-3">
             <label for="fullName">Nome Completo:</label>
             <input type="text" class="form-control" id="fullName" name="nomeCompleto">
@@ -37,12 +37,6 @@
             <label for="caregiverPhone">Telefone do Cuidador:</label>
             <input type="text" class="form-control" placeholder="(xx)xxxxx-xxxx" id="caregiverPhone" name="caregiverPhone">
             <div id="caregiverPhoneFeedback" class="invalid-feedback"></div>
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="cns">CNS:</label>
-            <input type="text" class="form-control" id="cns" value='<? $_POST['verificarCNS'] ?>' name="cns">
-            <div id="cnsFeedback" class="invalid-feedback"></div>
         </div>
 
         <div class="text-center">
