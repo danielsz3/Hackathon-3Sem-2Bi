@@ -38,6 +38,15 @@ public class MenuHub extends JFrame {
         constraints.gridx = 0;
         constraints.gridy = 2;
         painelEntrada.add(botaoPaciente, constraints);
+
+        JButton botaoVacina = new JButton("Vacina");
+        botaoVacina.addActionListener(e -> SwingUtilities.invokeLater(() -> {
+            VacinaHub form = new VacinaHub();
+            form.setVisible(true);
+        }));
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        painelEntrada.add(botaoVacina, constraints);
         return painelEntrada;
     }
 }
