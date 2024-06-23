@@ -12,7 +12,7 @@ public class EnderecoDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3333/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "daniel");
+                    "jdbc:mysql://localhost:3306/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "");
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }
