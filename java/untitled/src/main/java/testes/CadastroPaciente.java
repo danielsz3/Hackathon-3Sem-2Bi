@@ -1,5 +1,7 @@
 package testes;
 
+import model.Paciente;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -7,17 +9,19 @@ import java.sql.*;
 
 public class CadastroPaciente extends JFrame {
 
-    private JTextField txtNome, txtDataNascimento, txtCPF, txtEmail, txtCNS, txtCelular;
+    private JTextField txtNome, txtDataNascimento, txtCPF, txtEmail, txtCNS, txtCelular, txtNomeDoCuidador, txtTelefoneDoCuidador;
+    private JTextField txtLogradouro, txtNumero, txtComplemento, txtBairro, txtCidade, txtEstado, txtCEP;
     private JButton btnSalvar;
 
     public CadastroPaciente() {
         setTitle("Cadastro de Paciente");
-        setSize(400, 300);
+        setSize(400, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(6, 2));
+        panel.setLayout(new GridLayout(13, 2));
 
+        // Campos de paciente
         panel.add(new JLabel("Nome:"));
         txtNome = new JTextField();
         panel.add(txtNome);
@@ -42,6 +46,43 @@ public class CadastroPaciente extends JFrame {
         txtCelular = new JTextField();
         panel.add(txtCelular);
 
+        // Campos de endereço
+        panel.add(new JLabel("Logradouro:"));
+        txtLogradouro = new JTextField();
+        panel.add(txtLogradouro);
+
+        panel.add(new JLabel("Número:"));
+        txtNumero = new JTextField();
+        panel.add(txtNumero);
+
+        panel.add(new JLabel("Complemento:"));
+        txtComplemento = new JTextField();
+        panel.add(txtComplemento);
+
+        panel.add(new JLabel("Bairro:"));
+        txtBairro = new JTextField();
+        panel.add(txtBairro);
+
+        panel.add(new JLabel("Cidade:"));
+        txtCidade = new JTextField();
+        panel.add(txtCidade);
+
+        panel.add(new JLabel("Estado:"));
+        txtEstado = new JTextField();
+        panel.add(txtEstado);
+
+        panel.add(new JLabel("CEP:"));
+        txtCEP = new JTextField();
+        panel.add(txtCEP);
+
+        panel.add(new JLabel("Nome do Cuidador:"));
+        txtNomeDoCuidador = new JTextField();
+        panel.add(txtNomeDoCuidador);
+
+        panel.add(new JLabel("Telefone do Cuidador:"));
+        txtTelefoneDoCuidador = new JTextField();
+        panel.add(txtTelefoneDoCuidador);
+
         btnSalvar = new JButton("Salvar");
         btnSalvar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -54,45 +95,9 @@ public class CadastroPaciente extends JFrame {
         setVisible(true);
     }
 
-    private void salvarPaciente() {
-        String url = "jdbc:mysql://127.0.0.1:3333/dbvacinacao";
-        String usuario = "root";
-        String senha = "daniel";
-
-        try {
-            Connection conn = DriverManager.getConnection(url, usuario, senha);
-
-            String nome = txtNome.getText();
-            String dataNascimento = txtDataNascimento.getText();
-            String cpf = txtCPF.getText();
-            String email = txtEmail.getText();
-            String cns = txtCNS.getText();
-            String celular = txtCelular.getText();
-
-            String sql = "INSERT INTO paciente (id_endereco, nome, dataNascimento, cpf, email, cns, celular) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, 1); // Usando id_endereco = 1 por padrão
-            stmt.setString(2, nome);
-            stmt.setString(3, dataNascimento);
-            stmt.setString(4, cpf);
-            stmt.setString(5, email);
-            stmt.setString(6, cns);
-            stmt.setString(7, celular);
-
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
-                limparCampos();
-            } else {
-                JOptionPane.showMessageDialog(this, "Erro ao cadastrar paciente.");
-            }
-
-            conn.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao conectar ao banco de dados.");
-        }
+    private void salvarPaciente(){
+        new Paciente(txtNome.getText(), txtCPF.getText(), txtCelular.getText(), Date.valueOf(txtDataNascimento.getText()),
+                txtCNS.getText(), txtEmail.getText(), txtNomeDoCuidador.getText(), txtTelefoneDoCuidador.getText());
     }
 
     private void limparCampos() {
@@ -102,13 +107,20 @@ public class CadastroPaciente extends JFrame {
         txtEmail.setText("");
         txtCNS.setText("");
         txtCelular.setText("");
+        txtLogradouro.setText("");
+        txtNumero.setText("");
+        txtComplemento.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        txtEstado.setText("");
+        txtCEP.setText("");
     }
 
     public static void main(String[] args) {
         // Teste de conexão
-        String url = "jdbc:mysql://127.0.0.1:3333/dbvacinacao";
+        String url = "jdbc:mysql://localhost:3306/dbvacinacao";
         String usuario = "root";
-        String senha = "daniel";
+        String senha = "";
 
         try {
             Connection conn = DriverManager.getConnection(url, usuario, senha);

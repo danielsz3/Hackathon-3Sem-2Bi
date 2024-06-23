@@ -23,7 +23,7 @@ public class PacienteService {
                     paciente.getEndereco().setId(daoEndereco.consultarMaiorId());
                 }
                 System.out.println(daoEndereco.consultarMaiorId());
-                daoPaciente.inserir(paciente);
+                daoPaciente.salvarPaciente(paciente);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
