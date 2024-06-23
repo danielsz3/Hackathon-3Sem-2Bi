@@ -1,11 +1,7 @@
-
-
-
 <title>Vacina Brasil - Cadastro</title>
 
-<h1>Cadastro</h1>
-
 <div class="container mt-5">
+    <h1>Cadastro</h1>
     <form action="./cadastroEndereco" method="POST" id="myForm">
         <div class="form-group mb-3">
             <label for="fullName">Nome Completo:</label>
@@ -18,7 +14,7 @@
             <input type="text" class="form-control" placeholder="xxx.xxx.xxx-xx" id="cpf" name="cpf">
             <div id="cpfFeedback" class="invalid-feedback"></div>
         </div>
-        
+
         <div class="form-group mb-3">
             <label for="cpf">Data de Nascimento</label>
             <input type="date" class="form-control" id="data" name="data">
