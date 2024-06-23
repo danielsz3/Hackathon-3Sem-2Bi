@@ -39,8 +39,6 @@ router.post("/", async (req: Request, res: Response) => {
             .orderBy('id', 'desc')
             .first()
 
-
-
         const ultimoId = Number(id_ultimo_endereco)
         const id_endereco = ultimoId.toString().replace(/[^0-9]/g, '');
         console.log('Maior ID da tabela "endereço":', ultimoId, id_ultimo_endereco)
@@ -96,7 +94,7 @@ router.post("/", async (req: Request, res: Response) => {
 
     const id_paciente = await knex('paciente').insert(objSalvar)
     const paciente = await knex('paciente').where({ id: id_paciente[0] })
-    res.json({ message: "Paciente Salvar", paciente })
+    res.json({ message: "Paciente Salvar"})
 
 
 })
@@ -108,6 +106,23 @@ router.get('/', (req, res) => {
     })
 
 })
+
+router.get('/id', async (req: Request, res: Response) => {
+    try {
+        const maxIdResult = await knex('paciente').max('id as maxId').first();
+
+        if (maxIdResult && maxIdResult.maxId !== null) {
+            const maxId = parseInt(maxIdResult.maxId); // Converter para número inteiro
+
+            res.json({ id: maxId }); // Retorna apenas o campo ID
+        } else {
+            res.status(404).json({ error: 'Nenhum endereço paciente' });
+        }
+    } catch (error) {
+        console.error('Erro ao buscar maior ID de paciente:', error);
+        res.status(500).json({ error: 'Erro interno ao buscar maior ID de paciente' });
+    }
+});
 
 
 router.get('/:cns', async (req, res) => {
