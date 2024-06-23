@@ -3,9 +3,11 @@ package views;
 import service.PacienteService;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 
-public class VacinaHub{
+public class VacinaHub extends JFrame{
     //private PacienteService service;
     private JLabel labelId;
     private JTextField campoId;
@@ -20,25 +22,22 @@ public class VacinaHub{
     public VacinaHub() {
         //service = new PacienteService();
 
-        JFrame frame = new JFrame("Paciente App");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        setTitle("Vacina App");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+        JPanel painelEntrada = montarPainelEntrada();
 
-        JPanel listPanel = getVacina(tabbedPane);
+        JPanel painelSaida = montarPainelSaida();
 
-        JPanel cadastroPanel = setVacina();
+        getContentPane().add(painelEntrada, BorderLayout.NORTH);
+        getContentPane().add(painelSaida, BorderLayout.CENTER);
 
-        tabbedPane.addTab("Lista de Pacientes", listPanel);
-        tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
-
-        frame.add(tabbedPane, BorderLayout.CENTER);
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+        //pack();
+        setLocationRelativeTo(null);
     }
 
-    private JPanel setVacina() {
+    private JPanel montarPainelEntrada() {
         JPanel painelEntrada = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(5, 5, 5, 5);
@@ -78,23 +77,42 @@ public class VacinaHub{
         botaoCancelar = new JButton("Cancelar");
         //botaoCancelar.addActionListener(e -> limparCampos());
         constraints.gridx = 0;
-        constraints.gridy = 16;
+        constraints.gridy = 3;
         painelEntrada.add(botaoCancelar, constraints);
 
         botaoSalvar = new JButton("Salvar");
         //botaoSalvar.addActionListener(e -> salvar());
         constraints.gridx = 1;
-        constraints.gridy = 16;
+        constraints.gridy = 3;
+        painelEntrada.add(botaoSalvar, constraints);
+
+        botaoSalvar = new JButton("Deletar");
+        //botaoSalvar.addActionListener(e -> salvar());
+        constraints.gridx = 2;
+        constraints.gridy = 3;
         painelEntrada.add(botaoSalvar, constraints);
 
         return painelEntrada;
     }
 
-    private JPanel getVacina(JTabbedPane tabbedPane) {
-        // Panel da Lista de Pacientes
-        JPanel listPanel = new JPanel(new BorderLayout());
-        JScrollPane scrollPane = new JScrollPane();
-        listPanel.add(scrollPane, BorderLayout.CENTER);
-        return listPanel;
+    private JPanel montarPainelSaida() {
+        JPanel painelSaida = new JPanel(new BorderLayout());
+        var tabela = new JTable();
+        tabela.setModel(modelo());
+        tabela.getTableHeader().setReorderingAllowed(false);
+        tabela.setDefaultEditor(Object.class,null);
+        //tabela.getSelectionModel().addListSelectionListener();
+        JScrollPane scrollPane = new JScrollPane(tabela);
+        painelSaida.add(scrollPane, BorderLayout.CENTER);
+        return painelSaida;
+    }
+
+    private TableModel modelo() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID:");
+        model.addColumn("Nome:");
+        model.addColumn("Descrição:");
+
+        return model;
     }
 }
