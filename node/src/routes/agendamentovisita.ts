@@ -1,26 +1,37 @@
 import Router, { Request, Response } from "express"
 import knex from "../knex"
 import AppError from "../utils/AppError"
-import { z } from "zod"
+import { number, z } from "zod"
 
 const router = Router()
 
 router.post("/", async (req: Request, res: Response) => {
+    // Defina o schema de validação
     const agendamentoBodySchema = z.object({
         dataVisita: z.string(),
         situacao: z.string().max(20),
-        id_agenteSaude: z.number(),
-        id_paciente: z.number()
+        id_agenteSaude: z.number().nullable(),
+        id_paciente: z.number().nullable()
     })
 
-    const objSalvar = agendamentoBodySchema.parse(req.body)
+    try {
 
-    const id_agendamentovisita = await knex('agendamentovisita').insert(objSalvar)
+        const objSalvar = agendamentoBodySchema.parse(req.body)
 
-    const agendamento = await knex('agendamentovisita').where({ id: id_agendamentovisita[0] }).first()
+        await knex('agendamentovisita').insert({
+            dataVisita: objSalvar.dataVisita,
+            situacao: objSalvar.situacao,
+            id_agentesaude: objSalvar.id_agenteSaude !== undefined ? objSalvar.id_agenteSaude : null,
+            id_paciente: objSalvar.id_paciente !== undefined ? objSalvar.id_paciente : null
+        })
 
-    res.json({ message: "Agendamento de Visita Salvo", agendamento })
+        res.status(201).json({ message: "Agendamento da Visita criado com sucesso" })
+    } catch (error) {
+        console.error("Erro ao criar o Agendamento da Visita:", error)
+        res.status(400).json({ message: "Erro ao criar o Agendamento da Visita" })
+    }
 })
+
 
 router.get("/", async (req: Request, res: Response) => {
     const agendamentos = await knex('agendamentovisita')
