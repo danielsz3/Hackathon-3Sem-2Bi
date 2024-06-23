@@ -1,5 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express'
 import "express-async-errors"
+import bodyParser from 'body-parser';
 
 import AppError from './utils/AppError'
 import routes from './routes'
@@ -8,6 +9,8 @@ import { ZodError } from 'zod'
 const app = express()
 
 app.use(express.json())
+app.use(bodyParser.json())
+
 
 app.use(routes)
 
@@ -43,7 +46,7 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 })
 
 
-const PORT = 8888
+const PORT = 8081
 
 app.listen(PORT, () => {
     console.log('Express iniciou na porta: ' +
