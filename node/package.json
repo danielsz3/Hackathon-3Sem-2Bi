@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "nodemon",
         "migrate": "knex migrate:latest",
-        "migrate:make": "knex migrate:make create_agendamentovisita_table && knex migrate:make create_agentesaude_table && knex migrate:make create_endereco_table && knex migrate:make create_paciente_table && knex migrate:make create_prontuario_table && knex migrate:make create_vacina_table && knex migrate:make create_knex_migrations_table && knex migrate:make create_knex_migrations_lock_table",
+        "migrate:make": "knex migrate:make create_agendamentovisita_table",
         "migrate:rollback": "knex migrate:rollback",
         "test": "jest --watch"
     },

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: dbvacinacao
+-- Host: 127.0.0.1    Database: dbvacinacao2
 -- ------------------------------------------------------
 -- Server version	8.0.37
 
@@ -26,12 +26,14 @@ CREATE TABLE `agendamentovisita` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `dataVisita` datetime NOT NULL,
   `situacao` varchar(20) NOT NULL,
-  `id_agenteSaude` int DEFAULT NULL,
-  `id_paciente` int DEFAULT NULL,
+  `id_agenteSaude` int unsigned DEFAULT NULL,
+  `id_paciente` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `agendamentovisita_id_agentesaude_foreign` (`id_agenteSaude`),
-  KEY `agendamentovisita_id_paciente_foreign` (`id_paciente`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+  KEY `agendamentovisita_id_paciente_foreign` (`id_paciente`),
+  CONSTRAINT `agendamentovisita_id_agentesaude_foreign` FOREIGN KEY (`id_agenteSaude`) REFERENCES `agentesaude` (`id`),
+  CONSTRAINT `agendamentovisita_id_paciente_foreign` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +42,7 @@ CREATE TABLE `agendamentovisita` (
 
 LOCK TABLES `agendamentovisita` WRITE;
 /*!40000 ALTER TABLE `agendamentovisita` DISABLE KEYS */;
+INSERT INTO `agendamentovisita` VALUES (2,'2024-06-21 00:00:00','Em andamento',3,2),(3,'2024-06-21 00:00:00','Em andamento',3,1),(4,'2024-06-21 00:00:00','Em andamento',1,1),(5,'2024-06-21 00:00:00','Em andamento',1,1),(6,'2024-06-21 00:00:00','Em andamento',NULL,NULL);
 /*!40000 ALTER TABLE `agendamentovisita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +63,7 @@ CREATE TABLE `agentesaude` (
   UNIQUE KEY `agentesaude_cpf_unique` (`cpf`),
   UNIQUE KEY `agentesaude_celular_unique` (`celular`),
   UNIQUE KEY `agentesaude_senha_unique` (`senha`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +72,7 @@ CREATE TABLE `agentesaude` (
 
 LOCK TABLES `agentesaude` WRITE;
 /*!40000 ALTER TABLE `agentesaude` DISABLE KEYS */;
-INSERT INTO `agentesaude` VALUES (12,'Teste5000','08974125245','41947722141','$2b$08$k/GgHfQyfg.z7VuxrjID7eOQ.B/SdODz5fKh7GltLqJpTCVdl3Mfa'),(13,'Teste5 de Desenvolvimento','08974124245','48947722141','$2b$08$JPA37tx/TH/7hM7iIizrBuS5ZML1S05VkDLggTVrzPO.O/wR0Zt7q'),(15,'Teste5 de Desenvolvimento','85798754325','14725836915','$2b$08$7UDwMIUZl3jCfxaYsqGwTe7p.T1sNjsu5L3tBD7HJZSZZqma4ah/q'),(16,'Teste5 de Desenvolvimento','85798854325','24725836915','$2b$08$Hhw7scVeARzULDFsTUdl0.MbuW/rDKvqDaEWxvb7fBgIJPoU.Cry.');
+INSERT INTO `agentesaude` VALUES (1,'Teste10 de Desenvolvimento','12345678909','24725836917','$2b$08$CsheAZ4LUfmaWaQX3XiMJuVGPKbb5TXdi2DzPvVjWPlKAJ9a7.KqC'),(2,'Teste10 de Desenvolvimento','63058308000','21725836917','$2b$08$6/IPtvJq8nT4dzsrJRQGhet67gAqFmgR0M5zFYMXI1/H8nWHg3zfK'),(3,'Teste10 de Desenvolvimento','22301728080','27725836917','$2b$08$Kyki5EHhZGgc8y1zeEWsN.lE02F.86fx7sMAKs41c5gk.VdzwlDkG'),(4,'Teste10 de Desenvolvimento','17173412099','27725836975','$2b$08$1EN2JT.Md4PyNdwWazc9HOWUHlnJ83DhBdUMpi33mOioNbP3LC196');
 /*!40000 ALTER TABLE `agentesaude` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +93,7 @@ CREATE TABLE `endereco` (
   `cidade` varchar(45) NOT NULL,
   `estado` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +102,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,'12345678','Avenida Exemplo','123','Apartamento 45','Centro','São Paulo','SP'),(2,'87580250','Maven','404','ap32','Zona III','Umuarama','PR'),(3,'87502450','rua','4578','casa','java','umuarama','parana'),(4,'87502450','rua','4578','casa','java','umuarama','parana');
+INSERT INTO `endereco` VALUES (1,'12345678','Avenida Exemplo','123','Apartamento 45','Centro','São Paulo','SP'),(2,'12345678','Avenida Exemplo','123','Apartamento 45','Centro','São Paulo','SP'),(3,'12345678','Avenida Exemplo','123','Apartamento 45','Centro','São Paulo','SP'),(4,'12345678','Avenida Exemplo','123','Apartamento 45','Centro','São Paulo','SP'),(5,'12345678','Avenida Exemplo','123','Apartamento 45','Centro','São Paulo','SP'),(6,'12345678','Avenida Exemplo','123','Apartamento 45','Centro','São Paulo','SP');
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +119,7 @@ CREATE TABLE `knex_migrations` (
   `batch` int DEFAULT NULL,
   `migration_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +128,7 @@ CREATE TABLE `knex_migrations` (
 
 LOCK TABLES `knex_migrations` WRITE;
 /*!40000 ALTER TABLE `knex_migrations` DISABLE KEYS */;
-INSERT INTO `knex_migrations` VALUES (1,'20240621223350_create_dbVacinacao.js',1,'2024-06-21 23:25:33');
+INSERT INTO `knex_migrations` VALUES (1,'20240622011432_create_dbVacinacao.js',1,'2024-06-23 02:33:08');
 /*!40000 ALTER TABLE `knex_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,7 +143,7 @@ CREATE TABLE `knex_migrations_lock` (
   `index` int unsigned NOT NULL AUTO_INCREMENT,
   `is_locked` int DEFAULT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +181,7 @@ CREATE TABLE `paciente` (
   UNIQUE KEY `paciente_email_unique` (`email`),
   KEY `paciente_id_endereco_foreign` (`id_endereco`),
   CONSTRAINT `paciente_id_endereco_foreign` FOREIGN KEY (`id_endereco`) REFERENCES `endereco` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,7 +190,7 @@ CREATE TABLE `paciente` (
 
 LOCK TABLES `paciente` WRITE;
 /*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
-INSERT INTO `paciente` VALUES (3,1,'Daniel teste','2000-08-10','12345678910','12345678912345','12345678910','exemplo@teste.com','testando','40048922987'),(8,1,'danielTeste','2000-08-10','14837940320','963852741258745','98765432148','exemplo2@teste.com','testando','40048922987'),(15,1,'danielteste','2020-10-24','','963852641258747','98778432148','exemplo57@teste.com','testando','40048922987'),(16,1,'Daniel teste','2023-02-02','08916635926','987548632658725','12345678958','exemplo47@teste.com','testando','40048922987'),(17,1,'danielJAVAAAA','2000-01-10','08916635935','123456789102369','21997221511','java@daniel.com',NULL,NULL),(18,2,'javaDaniel','2000-10-08','12345678917','123859745215965','47997221558','daniel@java.com',NULL,NULL),(20,4,'daniel','2000-10-08','12345698724','147852369852145','46997221511','java@java.com',NULL,NULL);
+INSERT INTO `paciente` VALUES (1,1,'Daniel teste','2023-02-02','64332125061','987548632658725','12345678958','exemplo47@teste.com','testando','40048922987'),(2,3,'Daniel teste2','1990-02-05','38621577097','987549632658725','12445678958','exemplo77@teste.com','testando2','40048922974');
 /*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +208,7 @@ CREATE TABLE `prontuario` (
   KEY `prontuario_id_agendamentovisita_foreign` (`id_agendamentoVisita`),
   CONSTRAINT `prontuario_id_agendamentovisita_foreign` FOREIGN KEY (`id_agendamentoVisita`) REFERENCES `agendamentovisita` (`id`),
   CONSTRAINT `prontuario_id_vacina_foreign` FOREIGN KEY (`id_vacina`) REFERENCES `vacina` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +233,7 @@ CREATE TABLE `vacina` (
   `descricao` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `vacina_nomevacina_unique` (`nomeVacina`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +242,7 @@ CREATE TABLE `vacina` (
 
 LOCK TABLES `vacina` WRITE;
 /*!40000 ALTER TABLE `vacina` DISABLE KEYS */;
-INSERT INTO `vacina` VALUES (1,'Covid-19','TesteCovid-19 China');
+INSERT INTO `vacina` VALUES (1,'Covid-19','TesteCovid-19'),(4,'Covid-20','TesteCovid-19'),(5,'Covid-29','TesteCovid-19');
 /*!40000 ALTER TABLE `vacina` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -252,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-22 23:16:08
+-- Dump completed on 2024-06-23  0:58:08
