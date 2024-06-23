@@ -55,7 +55,7 @@
                <a href="../../php/paginas/main" class="link-texto"><h1>Vacina Brasil</h1></a> 
             </div>
 
-            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#notificationModal">
+            <button class="btn btn-outline" type="button" data-bs-toggle="modal" data-bs-target="#notificationModal">
                 <i class="bi bi-bell"></i>
             </button>
         </div>
