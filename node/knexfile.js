@@ -1,17 +1,15 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
     development: {
         client: 'mysql',
         connection: {
-            host: '127.0.0.1',
-            port: 3333,
+            host: 'localhost',
+            port: 3306,
             user: 'root',
-            password: 'root',
-            database: 'dbVacinacao',
-        },
-        pool: {
-            afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb)
+            password: '',
+            database: 'dbvacinacao',
+            insecureAuth: true,
         },
         migrations: {
             directory: path.resolve(
@@ -24,4 +22,4 @@ module.exports = {
         },
         useNullAsDefault: true
     }
-};
+}

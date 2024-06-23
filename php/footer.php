@@ -20,3 +20,7 @@
         </div>
     </div>
 </footer>
+</body>
+<script src="./funcoes/validation.js"></script>
+
+</html>
