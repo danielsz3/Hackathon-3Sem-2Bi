@@ -1,7 +1,12 @@
+html, body {
+    height: 100%;
+}
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
+.container h1{
+    text-align: center;
+}
 .carrosel {
     width: 100%;
     height: 585px;
@@ -56,6 +61,7 @@ body {
     color: #fff;
 }
 .fixed-footer {
+    margin-top: 10px;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -63,4 +69,12 @@ body {
     text-align: center;
     color: white; /* Texto branco */
     padding: 10px 0; /* Espaçamento interno */
+}
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1;
 }
