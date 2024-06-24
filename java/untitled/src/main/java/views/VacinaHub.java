@@ -132,7 +132,7 @@ public class VacinaHub extends JFrame {
     private void salvar() {
         String nome = campoNome.getText();
         String descricao = campoDescricao.getText();
-        Integer id = campoId.getText().isEmpty() ? null : Integer.parseInt(campoId.getText());
+        Long id = Long.valueOf(campoId.getText().isEmpty() ? 0 : Integer.parseInt(campoId.getText()));
 
         Vacina vacina = new Vacina(id, nome, descricao);
         service.salvar(vacina);

@@ -13,7 +13,7 @@ public class VacinaDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3333/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "daniel");
+                    "jdbc:mysql://localhost:3306/dbvacinacao2?useTimezone=true&serverTimezone=UTC", "root", "");
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }
@@ -37,7 +37,7 @@ public class VacinaDao {
         ResultSet rs = connection.prepareStatement("select * from vacina").executeQuery();
         while (rs.next()) {
             vacinas.add(new Vacina(
-                    rs.getInt("id"),
+                    rs.getLong("id"),
                     rs.getString("nomeVacina"),
                     rs.getString("descricao")));
 
@@ -52,7 +52,7 @@ public class VacinaDao {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, vacina.getNomeVacina());
         ps.setString(2, vacina.getDescricao());
-        ps.setInt(3, vacina.getId());
+        ps.setLong(3, vacina.getId());
         ps.execute();
     }
 

@@ -17,7 +17,7 @@ import java.sql.Date;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class PacienteHub extends JFrame {
-    private PacienteService service;
+    private PacienteService service = new PacienteService();;
     private JLabel labelId;
     private JTextField campoId;
     private JLabel labelNome;
@@ -62,13 +62,12 @@ public class PacienteHub extends JFrame {
     }
 
     public PacienteHub() {
-        service = new PacienteService();
 
         setTitle("Paciente App");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
 
-        tabbedPane = new JTabbedPane();
+        JTabbedPane tabbedPane = new JTabbedPane();
 
         JPanel listPanel = getPaciente(tabbedPane);
         JPanel cadastroPanel = setPaciente();

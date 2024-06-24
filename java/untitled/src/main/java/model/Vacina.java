@@ -1,22 +1,22 @@
 package model;
 
 public class Vacina {
-    private Integer id; // Alterado de int para Integer
+    private Long id; // Alterado de int para Integer
     private String nomeVacina;
     private String descricao;
 
-    public Vacina(Integer id, String nomeVacina, String descricao) {
+    public Vacina(Long id, String nomeVacina, String descricao) {
         this.id = id;
         this.nomeVacina = nomeVacina;
         this.descricao = descricao;
     }
 
     // Getters e setters
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
