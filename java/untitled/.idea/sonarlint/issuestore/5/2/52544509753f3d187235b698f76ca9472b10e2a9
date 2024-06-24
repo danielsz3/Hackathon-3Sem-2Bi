@@ -1,0 +1,34 @@
+
+k	java:S117d"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ª§ºüÿÿÿÿ
+t
+java:S2293d"YReplace the type specification in this constructor call with the diamond operator ("<>").(›ª§ºüÿÿÿÿ
+h
+java:S1192/"MDefine a constant instead of duplicating this literal "nomeCuidador" 3 times.(—‘é¦ùÿÿÿÿ
+g
+java:S11920"QDefine a constant instead of duplicating this literal "telefoneCuidador" 3 times.(Šó¾Ì
+c
+java:S1192-"HDefine a constant instead of duplicating this literal "celular" 3 times.(”šêúùÿÿÿÿ
+e
+java:S2095$"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÒÖ˜ª
+e
+java:S2095L"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÒÖ˜ª
+e
+java:S2095]"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÒÖ˜ª
+e
+java:S2095;"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÒÖ˜ª
+j
+java:S2095f"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(íˆ†®ÿÿÿÿÿ
+j
+java:S2095{"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(À­ñÂùÿÿÿÿ
+?
+java:S2115")Add password protection to this database.(¬ŒÈ­
+:
+java:S6905""Don't use the query "SELECT *".(ûû¤×şÿÿÿÿ
+:
+java:S6905f"Don't use the query "SELECT *".(íˆ†®ÿÿÿÿÿ
+C
+java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ
+[
+java:S1128"@Remove this unused import 'javax.swing.table.DefaultTableModel'.(è†åûÿÿÿÿ
+K
+java:S1128	"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ
