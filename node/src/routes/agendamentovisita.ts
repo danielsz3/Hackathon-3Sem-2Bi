@@ -1,5 +1,5 @@
 import Router, { Request, Response } from "express"
-import knex from "../knex"
+import knex from "knex"
 import AppError from "../utils/AppError"
 import { number, z } from "zod"
 
@@ -31,7 +31,6 @@ router.post("/", async (req: Request, res: Response) => {
         res.status(400).json({ message: "Erro ao criar o Agendamento da Visita" })
     }
 })
-
 
 router.get("/", async (req: Request, res: Response) => {
     const agendamentos = await knex('agendamentovisita')

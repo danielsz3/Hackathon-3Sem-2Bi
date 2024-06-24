@@ -1,5 +1,5 @@
 import Router, { Request, Response } from "express"
-import knex from "../knex"
+import knex from "knex"
 import AppError from "../utils/AppError"
 import { z } from "zod"
 

@@ -1,5 +1,5 @@
 import Router, { Request, Response } from "express"
-import knex from "../knex"
+import knex from "knex"
 import AppError from "../utils/AppError"
 import CPFvalidator from "../../../php/funcoes/CPFvalidator"
 
@@ -49,11 +49,12 @@ router.post("/", async (req, res) => {
     }
 })
 
-
-router.get("/", (req: Request, res: Response) => {
-    knex('agentesaude').then((resposta) => {
-        res.json({ agentes: resposta })
-    })
+router.get("/", async (req: Request, res: Response) => {
+    const agenteSaude = await knex('agenteSaude')
+        .select(
+            'agenteSaude.*'
+        )
+    res.json({ agenteSaude })
 })
 
 router.put("/:id", async (req: Request, res: Response) => {
