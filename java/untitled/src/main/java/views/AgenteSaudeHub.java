@@ -6,8 +6,8 @@ import service.PacienteService;
 import javax.swing.*;
 import java.awt.*;
 
-public class AgenteSaudeHub {
-    private AgenteSaudeService service;
+public class AgenteSaudeHub extends JFrame{
+    private AgenteSaudeService service = new AgenteSaudeService();
     private JLabel labelId;
     private JTextField campoId;
     private JLabel labelNome;
@@ -20,11 +20,9 @@ public class AgenteSaudeHub {
     private JButton botaoCancelar;
 
     public AgenteSaudeHub() {
-        service = new AgenteSaudeService();
-
-        JFrame frame = new JFrame("Paciente App");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        setTitle("Agente App");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
@@ -35,9 +33,9 @@ public class AgenteSaudeHub {
         tabbedPane.addTab("Lista de Pacientes", listPanel);
         tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
 
-        frame.add(tabbedPane, BorderLayout.CENTER);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        add(tabbedPane, BorderLayout.CENTER);
+        setLocationRelativeTo(null);
+
     }
 
     private JPanel getAgente(JTabbedPane tabbedPane) {
