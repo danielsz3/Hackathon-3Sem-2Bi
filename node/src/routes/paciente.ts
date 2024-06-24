@@ -1,5 +1,5 @@
 import Router, { Request, Response } from "express"
-import knex from "../knex"
+import knex from "knex";
 import AppError from "../utils/AppError";
 import { z } from "zod"
 
@@ -65,16 +65,17 @@ router.post("/", async (req: Request, res: Response) => {
 
     const id_paciente = await knex('paciente').insert(objSalvar)
     const paciente = await knex('paciente').where({ id: id_paciente[0] })
-    res.json({ message: "Paciente Salvar"})
+    res.json({ message: "Paciente Salvar" })
 
 
 })
 
-router.get('/', (req, res) => {
-    knex('paciente').then((resposta) => {
-        res.json({ endereco: resposta })
-    })
-
+router.get('/', async (req: Request, res: Response) => {
+    const paciente = await knex('paciente')
+        .select(
+            'paciente.*'
+        )
+    res.json({ paciente })
 })
 
 router.get('/id', async (req: Request, res: Response) => {

@@ -9,11 +9,11 @@ import prontuario from './prontuario'
 
 const routes = Router()
 
-routes.use('/paciente', paciente)
-routes.use('/agenteSaude', agenteSaude)
-routes.use('/agendamentovisita', agendamentovisita)
-routes.use('/endereco', endereco)
-routes.use('/vacina', vacina)
-routes.use('/prontuario', prontuario)
+routes.use('./paciente', paciente)
+routes.use('./agenteSaude', agenteSaude)
+routes.use('./agendamentovisita', agendamentovisita)
+routes.use('./endereco', endereco)
+routes.use('./vacina', vacina)
+routes.use('./prontuario', prontuario)
 
 export default routes

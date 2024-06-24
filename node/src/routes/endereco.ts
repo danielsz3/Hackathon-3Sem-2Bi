@@ -1,12 +1,10 @@
 import Router, { Request, Response } from "express"
-import knex from "../knex"
+import knex from "knex"
 import AppError from "../utils/AppError";
 import { hash } from 'bcrypt'
 import { z } from "zod"
 
 const router = Router();
-
-
 
 router.post("/", async (req: Request, res: Response) => {
 
@@ -47,12 +45,12 @@ router.post("/", async (req: Request, res: Response) => {
 
 })
 
-
-router.get('/', (req, res) => {
-    knex('endereco').then((resposta) => {
-        res.json({ endereco: resposta })
-    })
-
+router.get("/", async (req: Request, res: Response) => {
+    const endereco = await knex('endereco')
+        .select(
+            'endereco.*'
+        )
+    res.json({ endereco })
 })
 
 router.get('/id', async (req: Request, res: Response) => {

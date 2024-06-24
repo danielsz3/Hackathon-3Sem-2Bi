@@ -7,7 +7,7 @@ if (isset($_POST['verificarCNS'])) {
     if (strlen($verificarCNS) == 15) {
 
         // A rota da API precisa consumir no GET o CNS digitado paga buscar no banco
-        $json_file = file_get_contents('http://localhost:8081/paciente/' . $verificarCNS);
+        $json_file = file_get_contents('http://localhost:8888/paciente/' . $verificarCNS);
         $resultadoConsultaCNS = json_decode($json_file, true);
 
 

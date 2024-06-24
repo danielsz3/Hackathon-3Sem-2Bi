@@ -51,7 +51,7 @@ if (isset($_POST['cep'])) {
     var_dump('<br><br><br><br><br>' . $endereco . '<br><br><br><br><br>');
 
     $jsonEndereco = json_encode($endereco);
-    $apiUrl = 'http://localhost:8081/endereco/';
+    $apiUrl = 'http://localhost:8888/endereco/';
     $ch = curl_init($apiUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
@@ -82,7 +82,7 @@ if (isset($_POST['nomeCompletoIdoso'])) {
 function cadastrarIdoso($nomeCompleto, $data, $cpf, $cns, $telefone, $email, $nomeCuidador, $telefoneCuidador)
 {
     // Faz a requisição GET para obter o maior ID de endereço
-    $jsonFile = file_get_contents('http://localhost:8081/endereco/id/');
+    $jsonFile = file_get_contents('http://localhost:8888/endereco/id/');
     $maiorIdEndereco = json_decode($jsonFile, true);
     var_dump($maiorIdEndereco['id']);
 
@@ -106,7 +106,7 @@ function cadastrarIdoso($nomeCompleto, $data, $cpf, $cns, $telefone, $email, $no
     $jsonPaciente = json_encode($paciente);
 
     // Faz a requisição POST para cadastrar o paciente
-    $apiUrl = 'http://localhost:8081/paciente/';
+    $apiUrl = 'http://localhost:8888/paciente/';
     $ch = curl_init($apiUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);

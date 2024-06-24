@@ -5,9 +5,9 @@ module.exports = {
         client: 'mysql',
         connection: {
             host: '127.0.0.1',
-            port: 8081,
+            port: 3333,
             user: 'root',
-            password: '',
+            password: 'daniel',
             database: 'dbvacinacao2',
             insecureAuth: true,
         },
