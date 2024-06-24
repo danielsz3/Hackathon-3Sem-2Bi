@@ -167,11 +167,4 @@ public class VacinaHub extends JFrame {
         campoDescricao.setText("");
         tabela.clearSelection();
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            VacinaHub hub = new VacinaHub();
-            hub.setVisible(true);
-        });
-    }
 }

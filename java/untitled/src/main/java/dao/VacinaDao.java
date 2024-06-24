@@ -13,7 +13,7 @@ public class VacinaDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "");
+                    "jdbc:mysql://localhost:3333/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "daniel");
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }
