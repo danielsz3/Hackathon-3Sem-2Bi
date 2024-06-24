@@ -1,7 +1,7 @@
 import Router, { Request, Response } from "express"
 import knex from "knex"
 import AppError from "../utils/AppError"
-import { number, z } from "zod"
+import { z } from "zod"
 
 const router = Router()
 
