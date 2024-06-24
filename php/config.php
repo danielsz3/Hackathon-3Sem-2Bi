@@ -4,7 +4,7 @@
     $servidor = "127.0.0.1";
     $usuario  = "root";
     $senha    = "daniel";
-    $banco    = "dbvacinacao";
+    $banco    = "dbvacinacao2";
 
     try {
         $pdo = new PDO("mysql:host={$servidor};dbname={$banco};port=3333;charset=utf8;",$usuario,$senha);
