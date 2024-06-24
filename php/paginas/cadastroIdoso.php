@@ -3,9 +3,8 @@ include 'dados.php';
 ?>
 <title>Vacina Brasil - Cadastro</title>
 
-<h1>Cadastro</h1>
-
 <div class="container mt-5">
+    <h1>Cadastro</h1>
     <form action="" method="POST" id="myForm">
         <div class="form-group mb-3">
             <label for="fullName">Nome Completo:</label>
@@ -49,6 +48,7 @@ include 'dados.php';
         </div>
 
         <div class="form-group mb-3">
+            <label for="caregiverPhone">CNS:</label>
             <input type="number" class="form-control" id="cns" name="verificarCNS" placeholder="Coloque os 15 dígitos do seu Cartão Nacional de Saúde" aria-label="Cartão Nacional de Saúde">
         </div>
 

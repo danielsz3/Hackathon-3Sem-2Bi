@@ -1,19 +1,22 @@
 
 <title>Vacina Brasil - Ver Agendamentos</title>
+<img src="../../img/covid.jpeg" alt="Imagem no topo" class="img-fluid mb-4">
 <main class="container my-4">
+    
     <div class="text-center mb-4">
-        <img src="../../img/topo.png" alt="Imagem no topo" class="img-fluid mb-4">
         <h1>Ver Agendamentos</h1>
     </div>
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="../../img/agendamento.png" class="card-img" alt="Imagem da consulta">
+                <img src="../../img/vacina.jpeg" class="card-img" alt="Imagem da consulta">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">Consulta 1</h5>
-                    <p class="card-text">Visita</p>
+                    <h5 class="card-title">Vacina da Gripe</h5>
+                    <p class="card-text">Dia 26/07/2024</p>
+                    <p class="card-text">Profissional: Geraldo Souza</p>
+                    <p class="card-text">Horário: 10:00 Horas</p>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-link p-0 mx-2" data-toggle="modal" data-target="#infoModal">
                             <i class="bi bi-info-circle"></i>
@@ -29,12 +32,14 @@
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="../../img/agendamento.png" class="card-img" alt="Imagem da consulta">
+                <img src="../../img/vacina.jpeg" class="card-img" alt="Imagem da consulta">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">Consulta 1</h5>
-                    <p class="card-text">Visita</p>
+                    <h5 class="card-title">Vacina CoronaVac</h5>
+                    <p class="card-text">Dia 26/07/2024</p>
+                    <p class="card-text">Profissional: Geraldo Souza</p>
+                    <p class="card-text">Horário: 10:00 Horas</p>
                     <div class="d-flex justify-content-end">
 
                         <button type="button" class="btn btn-link p-0 mx-2" data-toggle="modal" data-target="#infoModal">
