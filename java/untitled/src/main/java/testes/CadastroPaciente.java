@@ -1,4 +1,4 @@
-package testes;
+/*package testes;
 
 import model.Paciente;
 
@@ -142,3 +142,4 @@ public class CadastroPaciente extends JFrame {
         });
     }
 }
+*/

@@ -311,21 +311,21 @@ public class PacienteHub extends JFrame {
         try {
             return campoId.getText().isEmpty() ?
                     new Paciente(
-                    campoNome.getText(),
-                    campoCpf.getText(),
-                    campoCelular.getText(),
-                    new Endereco(campoCep.getText(),
-                            campoLogradouro.getText(),
-                            campoNumero.getText(),
-                            campoComplemento.getText(),
-                            campoBairro.getText(),
-                            campoCidade.getText(),
-                            campoEstado.getText()),
-                    parseDate(campoDataNascimento.getText()),
-                    campoCns.getText(),
-                    campoEmail.getText(),
-                    campoNomeCuidador.getText(),
-                    campoTelefoneCuidador.getText()
+                            campoNome.getText(),
+                            campoCpf.getText(),
+                            campoCelular.getText(),
+                            new Endereco(campoCep.getText(),
+                                    campoLogradouro.getText(),
+                                    campoNumero.getText(),
+                                    campoComplemento.getText(),
+                                    campoBairro.getText(),
+                                    campoCidade.getText(),
+                                    campoEstado.getText()),
+                            parseDate(campoDataNascimento.getText()),
+                            campoCns.getText(),
+                            campoEmail.getText(),
+                            campoNomeCuidador.getText(),
+                            campoTelefoneCuidador.getText()
                     ):
                     new Paciente(
                             Long.parseLong(campoId.getText()),
@@ -345,10 +345,11 @@ public class PacienteHub extends JFrame {
                                     campoCidade.getText(),
                                     campoEstado.getText())
                     );
-        } catch (ParseException e) {
-            throw new RuntimeException(e.getMessage());
+        } catch (NumberFormatException | ParseException e) {
+            throw new RuntimeException("Erro ao construir o objeto Paciente: " + e.getMessage());
         }
     }
+
 
     class ButtonRenderer extends JButton implements TableCellRenderer {
 

@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class TesteConexao {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://127.0.0.1:3333/dbvacinacao";
+        String url = "jdbc:mysql://localhost:3333/dbvacinacao2";
         String usuario = "root";
         String senha = "daniel";
 
