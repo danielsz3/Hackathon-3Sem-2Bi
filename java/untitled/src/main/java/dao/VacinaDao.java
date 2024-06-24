@@ -1,5 +1,9 @@
 package dao;
 
+<<<<<<< HEAD
+public class VacinaDao {
+}
+=======
 import model.Vacina;
 
 import java.sql.*;
@@ -64,3 +68,4 @@ public class VacinaDao {
     }
 }
 
+>>>>>>> java

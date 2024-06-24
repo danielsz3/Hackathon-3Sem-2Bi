@@ -1,0 +1,134 @@
+
+<title>Vacina Brasil - Ver Agendamentos</title>
+<img src="../../img/covid.jpeg" alt="Imagem no topo" class="img-fluid mb-4">
+<main class="container my-4">
+    
+    <div class="text-center mb-4">
+        <h1>Ver Agendamentos</h1>
+    </div>
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="../../img/vacina.jpeg" class="card-img" alt="Imagem da consulta">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Vacina da Gripe</h5>
+                    <p class="card-text">Dia 26/07/2024</p>
+                    <p class="card-text">Profissional: Geraldo Souza</p>
+                    <p class="card-text">Horário: 10:00 Horas</p>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-link p-0 mx-2" data-toggle="modal" data-target="#infoModal">
+                            <i class="bi bi-info-circle"></i>
+                        </button>
+                        <button type="button" class="btn btn-link p-0 mx-2" data-toggle="modal" data-target="#configModal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="../../img/vacina.jpeg" class="card-img" alt="Imagem da consulta">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Vacina CoronaVac</h5>
+                    <p class="card-text">Dia 26/07/2024</p>
+                    <p class="card-text">Profissional: Geraldo Souza</p>
+                    <p class="card-text">Horário: 10:00 Horas</p>
+                    <div class="d-flex justify-content-end">
+
+                        <button type="button" class="btn btn-link p-0 mx-2" data-toggle="modal" data-target="#infoModal">
+                            <i class="bi bi-info-circle"></i>
+                        </button>
+                  
+                        <button type="button" class="btn btn-link p-0 mx-2" data-toggle="modal" data-target="#configModal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Vacinas</h5>
+            </div>
+            <div class="modal-body">
+                <p><strong>Local:</strong> Av teste da silva, Centro, N100, Casa Cidade Fantasma, SP</p>
+                <p><strong>Data e hora:</strong> 10/06/2024 às 17:00 horas</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Vacina</th>
+                            <th>Posto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina B</td>
+                            <td>Posto A</td>
+                        </tr>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina A</td>
+                            <td>Posto A</td>
+                        </tr>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina A</td>
+                            <td>Posto A</td>
+                        </tr>
+                        <tr>
+                            <td>10/07/2024</td>
+                            <td>Vacina A</td>
+                            <td>Posto A</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Agente de Saúde:</strong> João Gabryel - CRM 6666</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Reagendar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="configModalLabel">Cancelar Agendamento</h5>
+            </div>
+            <div class="modal-body">
+                <span>Deseja cancelar esse agendamento?</span>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+            <button type="button" class="btn btn-primary">Sim</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<!-- Bootstrap JavaScript e dependências -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9O6V5tKnd4GOpKePtIxjGkz0I7r7PXQBYTKyf" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
