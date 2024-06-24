@@ -17,7 +17,7 @@
             <div class="hamburguer">
                 <button class="btn btn-hamburguer" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
                     </svg>
                 </button>
                 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -52,10 +52,12 @@
             </div>
 
             <div id="titulo" class="header-title text-center flex-grow-1">
-               <a href="../../php/paginas/main" class="link-texto"><h1>Vacina Brasil</h1></a> 
+                <a href="../../php/paginas/main" class="link-texto">
+                    <h1>Vacina Brasil</h1>
+                </a>
             </div>
 
-            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#notificationModal">
+            <button class="btn btn-outline" type="button" data-bs-toggle="modal" data-bs-target="#notificationModal">
                 <i class="bi bi-bell"></i>
             </button>
         </div>
@@ -80,7 +82,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -89,7 +91,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Sem novas notificações.</p>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                            <i class="bi bi-card-image"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Você tem 5 Visitas</h5>
+                                    <p class="card-text">Vacinas serão aplicadas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                            <i class="bi bi-card-image"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Você tem 2 Vacinas pendentes</h5>
+                                    <p class="card-text">Vacinas devem ser aplicadas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

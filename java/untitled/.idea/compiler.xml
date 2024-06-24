@@ -9,6 +9,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CRUDvacinacao" target="21" />
       <module name="untitled" target="21" />
     </bytecodeTargetLevel>
   </component>

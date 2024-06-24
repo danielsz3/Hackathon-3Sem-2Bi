@@ -1,17 +1,34 @@
-html, body {
-    height: 100%;
+html,
+body {
+    height: 70%;
 }
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: rgb(255, 254, 254);
 }
-.container h1{
+
+.header-title h1:hover {
+    color: blue;
+}
+
+.container h1 {
     text-align: center;
 }
+
 .carrosel {
     width: 100%;
     height: 585px;
 }
 
+.card-img {
+    width: 150px;
+}
+
+.img-fluid {
+    width: 100%;
+    height: 95%;
+}
 
 .hamburguer {
     margin: 10px;
@@ -27,18 +44,53 @@ body {
 }
 
 .info-carrosel {
+    font-size: 30px;
+    color: rgb(22, 22, 22);
+}
+
+.sus img {
+    width: 100px;
+}
+
+.link-sus {
+    text-decoration: none;
     color: black;
+}
+
+.sus:hover {
+    background-color: #97f3ae;
+    transform: scale(1.2);
+    transition: 1.5s;
+}
+
+.sus {
+    text-align: center;
+    background-color: aliceblue;
+    border: 1px sold rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: auto;
+    width: 300px;
+}
+
+.texto-card {
+    font-size: 25px;
+    color: rgb(247, 247, 167);
+    background-color: rgb(51, 6, 124);
 }
 
 .grid-header {
     grid-template-columns: 4% 96%;
     display: grid;
-    /*background-color: rgb(135, 245, 128);*/
     width: 100%;
 }
 
+.justify-content-center {
+    padding: 0 100px;
 
-.btn-hamburguer:hover {
+}
+
+.btn-hamburguer:hover,
+.btn-outline:hover {
     background-color: rgb(115, 180, 109);
 }
 
@@ -56,25 +108,32 @@ body {
     text-align: center;
     margin: 10px 100px;
 }
-.link-texto{
+
+.link-texto {
     text-decoration: none;
     color: #fff;
 }
+
 .fixed-footer {
     margin-top: 10px;
     position: relative;
     bottom: 0;
     width: 100%;
-    background-color: #28a745; /* Cor de fundo verde */
+    background-color: #28a745;
+    /* Cor de fundo verde */
     text-align: center;
-    color: white; /* Texto branco */
-    padding: 10px 0; /* Espaçamento interno */
+    color: white;
+    /* Texto branco */
+    padding: 10px 0;
+    /* Espaçamento interno */
 }
+
 .wrapper {
     min-height: 100%;
     display: flex;
     flex-direction: column;
 }
+
 .content {
     flex: 1;
 }
