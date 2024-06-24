@@ -48,7 +48,7 @@ if (isset($_POST['cep'])) {
         'estado' => $estado
     ];
 
-    var_dump('<br><br><br><br><br>' . $endereco . '<br><br><br><br><br>');
+   
 
     $jsonEndereco = json_encode($endereco);
     $apiUrl = 'http://localhost:8888/endereco/';
@@ -84,7 +84,7 @@ function cadastrarIdoso($nomeCompleto, $data, $cpf, $cns, $telefone, $email, $no
     // Faz a requisição GET para obter o maior ID de endereço
     $jsonFile = file_get_contents('http://localhost:8888/endereco/id/');
     $maiorIdEndereco = json_decode($jsonFile, true);
-    var_dump($maiorIdEndereco['id']);
+   
 
     // Converte a data para o formato SQL (YYYY-MM-DD)
     $dataNascimento = date('Y-m-d', strtotime($data));
@@ -101,7 +101,7 @@ function cadastrarIdoso($nomeCompleto, $data, $cpf, $cns, $telefone, $email, $no
         "nomeCuidador" => $nomeCuidador,
         "telefoneCuidador" => $telefoneCuidador
     ];
-    var_dump($paciente);
+  
     // Converte o array em JSON para enviar na requisição
     $jsonPaciente = json_encode($paciente);
 
