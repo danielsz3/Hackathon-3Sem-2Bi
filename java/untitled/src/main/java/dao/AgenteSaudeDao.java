@@ -16,7 +16,7 @@ public class AgenteSaudeDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/dbvacinacao2?useTimezone=true&serverTimezone=UTC", "root", "");
+                    "jdbc:mysql://localhost:3333/dbvacinacao2?useTimezone=true&serverTimezone=UTC", "root", "daniel");
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }

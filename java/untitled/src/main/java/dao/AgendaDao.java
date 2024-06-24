@@ -16,7 +16,7 @@ public class AgendaDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3333/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "daniel");
+                    "jdbc:mysql://localhost:3333/dbvacinacao2?useTimezone=true&serverTimezone=UTC", "root", "daniel");
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }
