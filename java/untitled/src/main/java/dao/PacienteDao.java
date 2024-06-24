@@ -51,9 +51,32 @@ public class PacienteDao {
             pacientes.add(paciente);
         }
 
+
         return pacientes;
     }
 
+    public Paciente buscarPacientesPorCns(String cns) throws SQLException {
+        Paciente paciente = null;
+
+        String sql = "SELECT * FROM paciente WHERE cns = ?";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, cns);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            paciente = new Paciente(
+                    rs.getLong("id"),
+                    rs.getString("nome"),
+                    rs.getString("cpf"),
+                    rs.getString("celular"),
+                    rs.getString("cns"),
+                    rs.getString("nomeCuidador"),
+                    rs.getString("telefoneCuidador")
+            );
+        }
+        return paciente;
+    }
 
     public void inserir(Paciente paciente) throws SQLException {
         String sql = "insert into paciente(id_endereco,nome,dataNascimento,cpf,cns,celular,email,nomeCuidador,telefoneCuidador) values(?,?,?,?,?,?,?,?,?)";
