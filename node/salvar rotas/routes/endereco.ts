@@ -1,75 +1,64 @@
 import Router, { Request, Response } from "express"
-import knex from "../knex"
-import AppError from "../utils/AppError";
-import { hash } from 'bcrypt'
+import knex from "knex"
+import AppError from "../../src/utils/AppError"
 import { z } from "zod"
 
-const router = Router();
+const router = Router()
 
-
+const registerBodySchema = z.object({
+    cep: z.string().length(8, { message: "CEP Obrigatório" }),
+    logradouro: z.string().max(50, { message: "Logradouro Obrigatório" }),
+    numero: z.string().max(11, { message: "Número Obrigatório" }),
+    complemento: z.string().max(50, { message: "Complemento" }).optional(),
+    bairro: z.string().max(50, { message: "Bairro Obrigatório e" }),
+    cidade: z.string().max(50, { message: "Cidade Obrigatória" }),
+    estado: z.string().max(50, { message: "Estado Obrigatório" })
+})
 
 router.post("/", async (req: Request, res: Response) => {
-
-    const registerBodySchema = z.object({
-        cep: z.string({ message: "CEP Obrigatorio" }).max(8).min(8),
-        logradouro: z.string({ message: "Logradouro Obrigatório" }).max(50),
-        numero: z.string({ message: "Numero Obrigatorio" }).max(11),
-        complemento: z.string().max(50),
-        bairro: z.string({ message: "Bairro Obrigatorio" }).max(50),
-        cidade: z.string({ message: "Cidade Obrigatorio" }).max(45),
-        estado: z.string({ message: "Estado Obrigatorio" }).max(45)
-    })
-
-    const objSalvar = registerBodySchema.parse(req.body)
-
-    if (!objSalvar?.cep) {
-        throw new AppError("CEP Obrigatório")
-    }
-    if (!objSalvar?.logradouro) {
-        throw new AppError("Logradouro Obrigatório")
-    }
-    if (!objSalvar?.numero) {
-        throw new AppError("Numero Obrigatório")
-    }
-    if (!objSalvar?.bairro) {
-        throw new AppError("Bairro Obrigatório")
-    }
-    if (!objSalvar?.cidade) {
-        throw new AppError("Cidade Obrigatório")
-    }
-    if (!objSalvar?.estado) {
-        throw new AppError("Estado Obrigatório")
-    }
-
-    const id_endereco = await knex('endereco').insert(objSalvar)
-    const endereco = await knex('endereco').where({ id: id_endereco[0] })
-    res.json({ message: "Endereco Salvar" })
-
-})
-
-
-router.get('/', (req, res) => {
-    knex('endereco').then((resposta) => {
-        res.json({ endereco: resposta })
-    })
-
-})
-
-router.get('/id', async (req: Request, res: Response) => {
     try {
-        const maxIdResult = await knex('endereco').max('id as maxId').first();
+        const objSalvar = registerBodySchema.parse(req.body)
+
+        const id_endereco = await knex('endereco').insert(objSalvar)
+        const endereco = await knex('endereco').where({ id: id_endereco[0] }).first()
+
+        res.status(201).json({ message: "Endereço Salvo com Sucesso", endereco })
+    } catch (error) {
+        if (error instanceof AppError) {
+            return res.status(error.statusCode).json({ error: error.message })
+        }
+        if (error instanceof z.ZodError) {
+            return res.status(400).json({ error: error.errors })
+        }
+        console.error("Erro ao salvar endereço:", error)
+        return res.status(500).json({ error: "Erro interno do servidor" })
+    }
+})
+
+router.get("/", async (req: Request, res: Response) => {
+    try {
+        const enderecos = await knex('endereco')
+        res.json({ enderecos })
+    } catch (error) {
+        console.error("Erro ao buscar endereços:", error)
+        res.status(500).json({ error: "Erro interno do servidor" })
+    }
+})
+
+router.get("/id", async (req: Request, res: Response) => {
+    try {
+        const maxIdResult = await knex('endereco').max('id as maxId').first()
 
         if (maxIdResult && maxIdResult.maxId !== null) {
-            const maxId = parseInt(maxIdResult.maxId); // Converter para número inteiro
-
-            res.json({ id: maxId }); // Retorna apenas o campo ID
+            const maxId = parseInt(maxIdResult.maxId)
+            res.json({ id: maxId })
         } else {
-            res.status(404).json({ error: 'Nenhum endereço encontrado' });
+            res.status(404).json({ error: 'Nenhum endereço encontrado' })
         }
     } catch (error) {
-        console.error('Erro ao buscar maior ID de endereço:', error);
-        res.status(500).json({ error: 'Erro interno ao buscar maior ID de endereço' });
+        console.error('Erro ao buscar maior ID de endereço:', error)
+        res.status(500).json({ error: 'Erro interno ao buscar maior ID de endereço' })
     }
-});
+})
 
 export default router

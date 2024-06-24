@@ -1,7 +1,7 @@
 import Router, { Request, Response } from "express"
 import knex from "../knex"
 import AppError from "../utils/AppError"
-import CPFvalidator from "../utils/CPFvalidator"
+import CPFvalidator from "../../../php/funcoes/CPFvalidator"
 
 import { hash } from 'bcrypt'
 import { z } from "zod"
