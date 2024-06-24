@@ -4,10 +4,10 @@ module.exports = {
     development: {
         client: 'mysql',
         connection: {
-            host: '127.0.0.1',
-            port: 3306,
+            host: 'localhost',
+            port: 3333,
             user: 'root',
-            password: '',
+            password: 'daniel',
             database: 'dbvacinacao2',
             insecureAuth: true,
         },
@@ -15,7 +15,6 @@ module.exports = {
             directory: path.resolve(
                 __dirname,
                 'src',
-                'database',
                 'knex',
                 'migrations'
             )
