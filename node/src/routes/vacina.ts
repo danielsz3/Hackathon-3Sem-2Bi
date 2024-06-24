@@ -45,15 +45,21 @@ router.put("/:id", async (req: Request, res: Response) => {
 router.delete("/:id", async (req: Request, res: Response) => {
     const { id } = req.params
 
-    const vacina = await knex('vacina').where({ id }).first()
+    try {
+        const vacina = await knex('vacina').where({ id }).first()
 
-    if (!vacina) {
-        throw new AppError('Vacina não encontrada', 404)
+        if (!vacina) {
+            throw new AppError('Vacina não encontrada', 404)
+        }
+
+        await knex('vacina').where({ id }).delete()
+
+        res.json({ message: 'Vacina deletada com sucesso' })
+    } catch (error) {
+        console.error(error)
+        throw new AppError('Erro ao deletar vacina', 500)
     }
-
-    await knex('vacina').where({ id }).delete()
-
-    res.json({ message: 'Vacina deletada com sucesso' })
 })
+
 
 export default router
