@@ -1,7 +1,9 @@
 package views;
 
+import dao.AgenteSaudeDao;
 import model.AgendamentoVisita;
 import model.Vacina;
+import service.AgenteSaudeService;
 import service.VacinaService;
 
 import javax.swing.*;
@@ -17,7 +19,7 @@ import java.time.format.DateTimeParseException;
 
 public class AgendaHub extends JFrame{
     private VacinaService service = new VacinaService();
-    //private AgendaService serviceAgenda = new AgendaService();
+    private AgenteSaudeService serviceAgente = new AgenteSaudeService();
 
     private JLabel labelId;
     private JTextField campoId;
@@ -41,16 +43,10 @@ public class AgendaHub extends JFrame{
             "CANCELADO",
             "FINALIZADO"
     };
-    String[] agentes = {
-            "Agente 1",
-            "Agente 2",
-            "Agente 3",
-            "Agente 4"
-    };
 
     public AgendaHub() {
         setTitle("Agenda App"); // Define o título do JFrame atual
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
 
         JTabbedPane abasAgenda = new JTabbedPane();
@@ -68,7 +64,7 @@ public class AgendaHub extends JFrame{
 
     private JPanel setAgenda() {
         JPanel painel = new JPanel();
-        painel.add(cadastroPaciente(), BorderLayout.NORTH);
+        painel.add(cadastroAgenda(), BorderLayout.NORTH);
         painel.add(mostrarVacinas(), BorderLayout.SOUTH);
         return painel;
     }
@@ -112,7 +108,7 @@ public class AgendaHub extends JFrame{
         return painelSaida;
     }
 
-    private JPanel cadastroPaciente() {
+    private JPanel cadastroAgenda() {
         JPanel painel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(5, 5, 5, 5);
@@ -165,7 +161,7 @@ public class AgendaHub extends JFrame{
         constraints.gridy = 4;
         painel.add(labelAgente, constraints);
 
-        menuAgente = new JComboBox<>(agentes);
+        menuAgente = new JComboBox<>(serviceAgente.listarTodes());
         constraints.gridx = 1;
         constraints.gridy = 4;
         painel.add(menuAgente, constraints);
@@ -209,17 +205,13 @@ public class AgendaHub extends JFrame{
         searchPanel.add(campoDataVisita);
         searchPanel.add(searchButton);
 
-        JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "SITUAÇÃO", "DATA VISITA","CPF PACIENTE","NOME AGENTE","AÇÃO"}, 0));
+        JTable table = new JTable(new DefaultTableModel(new Object[]{"ID", "SITUAÇÃO", "DATA VISITA","CNS PACIENTE","NOME AGENTE","AÇÃO"}, 0));
         JScrollPane scrollPane = new JScrollPane(table);
 
         listPanel.add(searchPanel, BorderLayout.NORTH);
         listPanel.add(scrollPane, BorderLayout.CENTER);
 
         return listPanel;
-    }
-
-    private void salvar(){
-
     }
 
     private AgendamentoVisita construirAgenda() {

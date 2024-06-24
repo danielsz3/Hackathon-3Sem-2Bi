@@ -17,7 +17,8 @@ import java.sql.Date;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class PacienteHub extends JFrame {
-    private PacienteService service = new PacienteService();;
+    private PacienteService service = new PacienteService();
+    ;
     private JLabel labelId;
     private JTextField campoId;
     private JLabel labelNome;
@@ -55,7 +56,8 @@ public class PacienteHub extends JFrame {
     private JButton botaoCancelar;
 
     private JTable tabela;
-    private JTabbedPane tabbedPane;
+    private JTabbedPane tabbedPane = new JTabbedPane();
+
     private Date parseDate(String date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return new Date(format.parse(date).getTime());
@@ -67,8 +69,6 @@ public class PacienteHub extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
 
-        JTabbedPane tabbedPane = new JTabbedPane();
-
         JPanel listPanel = getPaciente(tabbedPane);
         JPanel cadastroPanel = setPaciente();
 
@@ -76,6 +76,16 @@ public class PacienteHub extends JFrame {
         tabbedPane.addTab("Cadastro de Pacientes", cadastroPanel);
 
         add(tabbedPane, BorderLayout.CENTER);
+        tabbedPane.addChangeListener(e -> {
+            // Aba 1 foi selecionada, atualizar o modelo da tabela
+            if (tabbedPane.getSelectedIndex() == 0) {
+                tabela.setModel(carregarDados());
+                tabela.getTableHeader().setReorderingAllowed(false);
+                tabela.setDefaultEditor(Object.class, null);
+                tabela.getColumn("Ações").setCellRenderer(new ButtonRenderer());
+                tabela.getColumn("Ações").setCellEditor(new ButtonEditor(new JCheckBox(), this));
+            }
+        });
         setLocationRelativeTo(null);
     }
 
@@ -253,7 +263,7 @@ public class PacienteHub extends JFrame {
         painelEntrada.add(botaoCancelar, constraints);
 
         botaoSalvar = new JButton("Salvar");
-        botaoSalvar.addActionListener(e -> limparCampos());
+        botaoSalvar.addActionListener(e -> salvar());
         constraints.gridx = 1;
         constraints.gridy = 16;
         painelEntrada.add(botaoSalvar, constraints);
@@ -267,12 +277,12 @@ public class PacienteHub extends JFrame {
         return painelEntrada;
     }
 
-    private void deletar(){
+    private void deletar() {
         try {
             service.deletar(Long.valueOf(campoId.getText()));
             limparCampos();
-            JOptionPane.showMessageDialog(this,"Paciente Deletado ! !");
-        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Paciente Deletado ! !");
+        } catch (Exception e) {
             showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
         }
     }
@@ -300,7 +310,7 @@ public class PacienteHub extends JFrame {
         try {
             service.salvar(construirPaciente());
             limparCampos();
-            JOptionPane.showMessageDialog(this,"Paciente Cadastrado ! !");
+            JOptionPane.showMessageDialog(this, "Paciente Cadastrado ! !");
         } catch (Exception e) {
             showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -325,7 +335,7 @@ public class PacienteHub extends JFrame {
                             campoEmail.getText(),
                             campoNomeCuidador.getText(),
                             campoTelefoneCuidador.getText()
-                    ):
+                    ) :
                     new Paciente(
                             Long.parseLong(campoId.getText()),
                             campoNome.getText(),
@@ -421,8 +431,13 @@ public class PacienteHub extends JFrame {
     }
 
     public Paciente getPacienteFromTable(int row) {
-        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        return service.buscarPorId((Long) model.getValueAt(row, 0));
+        if (row >= 0 && row < tabela.getRowCount()) {
+            DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+            return service.buscarPorId((Long) model.getValueAt(row, 0));
+        } else {
+            System.out.println("Índice de linha inválido: " + row);
+            return null;
+        }
     }
 
     public void carregarDadosPaciente(Paciente paciente) {
@@ -445,8 +460,13 @@ public class PacienteHub extends JFrame {
     }
 
     public void setSelectedTab(int index) {
-        tabbedPane.setSelectedIndex(index);
+        if (index >= 0 && index < tabbedPane.getTabCount()) {
+            tabbedPane.setSelectedIndex(index);
+        } else {
+            System.out.println("Índice de aba inválido: " + index);
+        }
     }
+
     private DefaultTableModel carregarDados() {
         DefaultTableModel model = new DefaultTableModel() {
             @Override
@@ -463,7 +483,7 @@ public class PacienteHub extends JFrame {
         model.addColumn("Telefone Cuidador");
         model.addColumn("Ações");
 
-        service.buscar().forEach(paciente -> model.addRow(new Object[]{paciente.getId(), paciente.getNome(), paciente.getCpf(), paciente.getCelular(), paciente.getCns(),paciente.getNomeCuidador(),paciente.getTelefoneCuidador(), "Editar"}));
+        service.buscar().forEach(paciente -> model.addRow(new Object[]{paciente.getId(), paciente.getNome(), paciente.getCpf(), paciente.getCelular(), paciente.getCns(), paciente.getNomeCuidador(), paciente.getTelefoneCuidador(), "Editar"}));
         return model;
     }
 
@@ -473,6 +493,7 @@ public class PacienteHub extends JFrame {
         JPanel searchPanel = new JPanel();
         JLabel searchLabel = new JLabel("Buscar por CPF:");
         JTextField searchField = new JTextField(15);
+
         JButton searchButton = new JButton("Buscar");
 
         searchButton.addActionListener(e -> service.buscarPorCpf(searchField.getText()));

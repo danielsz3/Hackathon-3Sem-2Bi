@@ -29,7 +29,7 @@ public class VacinaHub extends JFrame {
         service = new VacinaService();
 
         setTitle("Vacina App");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
 
         JPanel painelEntrada = montarPainelEntrada();

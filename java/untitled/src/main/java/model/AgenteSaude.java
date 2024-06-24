@@ -1,12 +1,13 @@
 package model;
 
 public class AgenteSaude extends Pessoa {
-    private String senha;
 
-    public AgenteSaude(Long id, String nome, String cpf, String celular, String senha) {
+    public AgenteSaude(Long id, String nome, String cpf, String celular) {
         super(id, nome, cpf, celular);
-        this.senha = senha;
     }
 
+    public AgenteSaude( String nome, String cpf, String celular) {
+        super(0L, nome, cpf, celular);
+    }
 
 }
