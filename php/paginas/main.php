@@ -11,21 +11,21 @@
         <img src="../../img/imagem1.jpg" class="d-block w-100 imagem-carrosel" alt="Vacina da gripe">
         <div class="carousel-caption d-none d-md-block">
           <h5 class="info-carrosel">Vacina da gripe</h5>
-          <p class="texto-card">Procure um posto próximo ou utilize nossos serviços de vista.</p>
+          <p class="texto-card">Procure um posto próximo ou utilize nossos serviços de visita.</p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="../../img/imagem2.jpg" class="d-block w-100 imagem-carrosel" alt="A importância de tomar vacina">
         <div class="carousel-caption d-none d-md-block">
           <h5 class="info-carrosel">É de extrema importância tomar as Vacinas.</h5>
-          <p class="texto-card">Procure um posto próximo ou utilize nossos serviços de vista.</p>
+          <p class="texto-card">Procure um posto próximo ou utilize nossos serviços de visita.</p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="../../img/imagem3.jpg" class="d-block w-100 imagem-carrosel" alt="Vacina de Tétano">
         <div class="carousel-caption d-none d-md-block">
           <h5 class="info-carrosel">Vacina de Tétano</h5>
-          <p class="texto-card">Procure um posto próximo ou utilize nossos serviços de vista.</p>
+          <p class="texto-card">Procure um posto próximo ou utilize nossos serviços de visita.</p>
         </div>
       </div>
     </div>
