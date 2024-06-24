@@ -19,7 +19,7 @@ public class PacienteDao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3333/dbvacinacao2?useTimezone=true&serverTimezone=UTC", "root", "daniel");
+                    "jdbc:mysql://localhost:3333/dbvacinacao?useTimezone=true&serverTimezone=UTC", "root", "daniel");
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }
@@ -74,19 +74,18 @@ public class PacienteDao {
     public void editar(Paciente paciente) throws SQLException {
         String sql = "UPDATE paciente SET nome=?, dataNascimento=?, cpf=?, cns=?, celular=?, email=?, nomeCuidador=?, telefoneCuidador=? WHERE id=?";
 
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, paciente.getNome());
-        ps.setDate(2, Date.valueOf(paciente.getDataNascimento()));
-        ps.setString(3, paciente.getCpf());
-        ps.setString(4, paciente.getCns());
-        ps.setString(5, paciente.getCelular());
-        ps.setString(6, paciente.getEmail());
-        ps.setString(7, paciente.getNomeCuidador());
-        ps.setString(8, paciente.getTelefoneCuidador());
-        ps.setLong(9, paciente.getId());
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, paciente.getNome());
+            ps.setDate(2, Date.valueOf(paciente.getDataNascimento()));
+            ps.setString(3, paciente.getCpf());
+            ps.setString(4, paciente.getCns());
+            ps.setString(5, paciente.getCelular());
+            ps.setString(6, paciente.getEmail());
+            ps.setString(7, paciente.getNomeCuidador());
+            ps.setString(8, paciente.getTelefoneCuidador());
+            ps.setLong(9, paciente.getId());
 
-        ps.executeUpdate();
-        System.out.println("foi");
+            ps.executeUpdate();
     }
 
     public void deletar(Long id) throws SQLException {
@@ -146,13 +145,9 @@ public class PacienteDao {
                                 rs.getString("cidade"),
                                 rs.getString("estado")
                         )
-
                 );
-
-
             }
         }
-
         return paciente;
     }
 }
