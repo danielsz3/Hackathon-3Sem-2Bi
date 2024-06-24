@@ -4,7 +4,7 @@
     <div class="text-center mb-4">
         <h1>Agendamento de Visita</h1>
     </div>
-    <form action="../../php/paginas/verAgendamento">
+    <form action="../../php/paginas/verAgendamento" method="POST">
         <div class="mb-3">
             <label for="dataVisita" class="form-label">Data da Visita</label>
             <div class="input-group">
@@ -18,9 +18,9 @@
             </div>
         </div>
         <div class="text-center">
-          <a href="../../php/paginas/cadastroEndereco"> <button type="button" class="btn btn-secondary mr-2">Voltar</button></a>
+          <a href="../../php/paginas/cadastroEndereco"> <button type="button" class="btn btn-warning mr-2">Voltar</button></a>
            
-           <a href="../../php/paginas/verAgendamento"><button type="submit" class="btn btn-primary">Agendar</button></a> 
+           <a href="../../php/paginas/verAgendamento"><button type="submit" class="btn btn-success">Agendar</button></a> 
         </div>
     </form>
 </main>

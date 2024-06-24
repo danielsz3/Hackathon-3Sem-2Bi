@@ -1,5 +1,4 @@
 <?php
-
 // verificarAgendamento.php == Se a requisicao nao estiver vindo vazia
 $verificarCNS = $_POST["verificarCNS"] ?? NULL;
 if (isset($_POST['verificarCNS'])) {
@@ -45,20 +44,34 @@ if (isset($_POST['verificarCNS'])) {
         <input type="number" class="form-control w-50" id="cns" name="verificarCNS" placeholder="Coloque os 15 dígitos do seu Cartão Nacional de Saúde" aria-label="Cartão Nacional de Saúde">
         <button class="btn btn-success">Verificar</button>
     </form>
-    <br><div id="cnsFeedback" class="invalid-feedback"></div><br>
+    <br>
+    <div id="cnsFeedback" class="invalid-feedback"></div><br>
     <div class="text-center mb-4">
         <h3>Onde encontrar?</h3>
         <hr>
     </div>
-    <div class="container text-center">
-        <div class="row align-items-center">
-            <div class="col-auto">
-                <img src="../../img/sus.png" alt="SUS logo" width="30px">
-            </div>
-            <div class="col">
-                <a href="https://meususdigital.saude.gov.br/login" target="_blank">Meu SUS Digital</a>
+
+
+
+    <a class="link-sus" href="https://meususdigital.saude.gov.br/login" target="_blank">
+        <div class="container text-center">
+            <div class="sus">
+
+                <img src="../../img/sus.png" alt="SUS" width="30px">
+                <h4>Meu SUS Digital</h4>
+
             </div>
         </div>
+    </a>
+
+    <div class="row align-items-center">
+        <div class="col-auto">
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
     </div>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
