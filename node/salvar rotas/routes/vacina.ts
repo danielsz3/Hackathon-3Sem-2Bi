@@ -1,6 +1,6 @@
 import Router, { Request, Response } from "express"
 import knex from "knex"
-import AppError from "../utils/AppError"
+import AppError from "../../src/utils/AppError"
 import { z } from "zod"
 
 const router = Router()
@@ -45,21 +45,15 @@ router.put("/:id", async (req: Request, res: Response) => {
 router.delete("/:id", async (req: Request, res: Response) => {
     const { id } = req.params
 
-    try {
-        const vacina = await knex('vacina').where({ id }).first()
+    const vacina = await knex('vacina').where({ id }).first()
 
-        if (!vacina) {
-            throw new AppError('Vacina não encontrada', 404)
-        }
-
-        await knex('vacina').where({ id }).delete()
-
-        res.json({ message: 'Vacina deletada com sucesso' })
-    } catch (error) {
-        console.error(error)
-        throw new AppError('Erro ao deletar vacina', 500)
+    if (!vacina) {
+        throw new AppError('Vacina não encontrada', 404)
     }
-})
 
+    await knex('vacina').where({ id }).delete()
+
+    res.json({ message: 'Vacina deletada com sucesso' })
+})
 
 export default router
